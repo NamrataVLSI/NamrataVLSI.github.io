@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analog IC Design &amp; Full-Custom Layout | Namrata Yadav</title>
+<meta name="description" content="Analog CMOS building blocks from circuit architecture and schematic design through DRC/LVS/ERC-clean layout">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="../index.html">Namrata Yadav</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrap crumb"><a href="../projects.html">&larr; All projects</a></div>
+  <div class="wrap detail-head">
+    <span class="badge">Analog design</span>
+    <h1>Analog IC Design &amp; Full-Custom Layout</h1>
+    <p class="detail-sub">Analog CMOS building blocks from circuit architecture and schematic design through DRC/LVS/ERC-clean layout</p>
+    <p class="detail-tools">Cadence Virtuoso &middot; Spectre &middot; PVS &middot; GPDK45</p>
+  </div>
+  <div class="wrap detail-body">
+
+<div class="block">
+  <h2>Role in the project</h2>
+  <p>Sole author. Circuit architecture, transistor-level schematic design, device sizing and biasing, pre-layout
+  simulation, full-custom layout, and physical verification for every block in the repository. Each block is documented
+  with a project README, a design report, and a layout and physical verification report.</p>
+</div>
+
+<div class="block">
+  <h2>Objective</h2>
+  <p>Build a documented reference set of the analog CMOS blocks that recur in real mixed-signal chips, using one
+  consistent methodology end to end, so that both the circuit reasoning and the physical implementation decisions are
+  traceable for each block.</p>
+</div>
+
+<div class="block">
+  <h2>Design flow</h2>
+  <div class="flow-vert"><span class="flow-step">Specification</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Architecture</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Schematic</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Sizing &amp; biasing</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Pre-layout sim</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Layout</span><span class="flow-arrow">&rarr;</span><span class="flow-step">DRC / LVS / ERC</span><span class="flow-arrow">&rarr;</span><span class="flow-step">PEX</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Post-layout</span></div>
+</div>
+
+<div class="block">
+  <h2>Analog design portfolio</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Block</th><th>Purpose and design focus</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Bandgap reference</strong></td><td>Precision voltage reference using PTAT and CTAT
+        compensation; matching and temperature behaviour dominate the design.</td><td>Schematic, layout, DRC/LVS/ERC</td></tr>
+      <tr><td><strong>Low-dropout regulator</strong></td><td>PMOS pass device with closed-loop feedback; loop
+        stability, phase margin, and PSRR are the governing constraints.</td><td>Schematic, layout, characterised</td></tr>
+      <tr><td><strong>Single-stage OTA</strong></td><td>Transconductance amplifier for analog signal processing;
+        operating-point selection and gain&ndash;bandwidth trade-off.</td><td>Schematic, layout, DRC/LVS/ERC</td></tr>
+      <tr><td><strong>Two-stage operational amplifier</strong></td><td>Multi-stage CMOS op-amp with Miller
+        compensation; phase margin and loop stability.</td><td>Schematic, layout, DRC/LVS/ERC</td></tr>
+      <tr><td><strong>Comparator</strong></td><td>Differential voltage comparator for analog-to-digital
+        interfaces; offset and matching awareness.</td><td>Schematic, layout, DRC/LVS/ERC</td></tr>
+      <tr><td><strong>Current mirrors</strong></td><td>Basic and cascode topologies for current replication and
+        bias generation; accuracy versus headroom.</td><td>Schematic, layout, DRC/LVS/ERC</td></tr>
+      <tr><td><strong>Differential pair</strong></td><td>CMOS differential amplifier; gain and common-mode
+        behaviour, matching-critical placement.</td><td>Schematic, layout, DRC/LVS/ERC</td></tr>
+      <tr><td><strong>Level shifter</strong></td><td>Voltage-domain translation for multi-supply systems.</td><td>Schematic, layout, DRC/LVS/ERC</td></tr>
+      <tr><td><strong>Schmitt trigger</strong></td><td>Comparator with hysteresis for noise immunity.</td><td>Schematic, layout, DRC/LVS/ERC</td></tr>
+      <tr><td><strong>Bias circuits</strong></td><td>Current and voltage bias generation feeding the other
+        blocks.</td><td>Schematic, layout, DRC/LVS/ERC</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Analog design considerations</h2>
+  <ul><li>Operating-point selection and transistor-region awareness &mdash; keeping devices in saturation across the intended input range rather than only at the nominal bias point.</li><li>Current-mirror accuracy: channel-length modulation and V<sub>DS</sub> mismatch between reference and mirror branches, and the headroom cost of cascoding.</li><li>Differential-pair matching and its dependence on layout symmetry, not just schematic symmetry.</li><li>Gain and bandwidth trade-offs against bias current and device sizing.</li><li>Miller compensation, phase margin, and loop stability for the feedback blocks.</li><li>PSRR behaviour for the regulator and reference blocks.</li><li>PVT and mismatch awareness in interpreting simulation results.</li><li>Layout-dependent parasitics and how they shift pre-layout predictions.</li></ul>
+</div>
+
+<div class="block">
+  <h2>Layout methodology</h2>
+  <ul><li><strong>Common-centroid placement</strong> for matched pairs and reference arrays, cancelling first-order process gradients.</li><li><strong>Interdigitation</strong> for differential pairs and mirror devices.</li><li><strong>Dummy devices</strong> at array edges so every active device sees the same local environment.</li><li><strong>Guard rings and deep N-well isolation</strong> to contain substrate noise and prevent latch-up.</li><li><strong>Symmetry-aware and matching-critical routing</strong> so that matched devices also see matched interconnect parasitics.</li><li><strong>Shielding</strong> on sensitive high-impedance nets where routing density allowed it.</li></ul>
+  <div class="fig-grid">
+    <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/analog_ota_layout.png" alt="Single-stage OTA layout with interdigitated input pair"></div><figcaption>Single-stage OTA layout with interdigitated input pair</figcaption></figure>
+    <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/analog_opamp_schematic.png" alt="Two-stage operational amplifier schematic"></div><figcaption>Two-stage operational amplifier schematic</figcaption></figure>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Verification</h2>
+  <p>Every block was closed to DRC, LVS, and ERC in Cadence PVS. Debug cycles covered spacing, enclosure,
+  connectivity, and device-geometry violations, with matching and routing corrections fed back into the placement
+  where verification exposed them.</p>
+  <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/analog_drc_lvs_clean.png" alt="DRC and LVS clean results"></div><figcaption>DRC and LVS clean results</figcaption></figure>
+</div>
+
+<div class="block">
+  <h2>Key learnings</h2>
+  <ul><li>Schematic symmetry is not matching; the layout has to enforce it.</li><li>A block that closes DRC but ignores matching intent is a failed analog layout, not a passing one.</li><li>Documenting design intent per block makes design reviews far faster than reading the schematic cold.</li></ul>
+</div>
+
+<div class="block"><h2>Repository</h2><a class="btn" href="https://github.com/NamrataVLSI/Analog-IC-Design-and-Layout-">View on GitHub</a></div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Namrata Yadav &middot; M.S. Computer Engineering, San Diego State University</p>
+    <div style="display:flex;gap:18px;">
+      <a href="mailto:namratayadav.cal@gmail.com">namratayadav.cal@gmail.com</a>
+      <a href="https://github.com/NamrataVLSI">GitHub</a>
+      <a href="https://www.linkedin.com/in/namrata-yadav">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

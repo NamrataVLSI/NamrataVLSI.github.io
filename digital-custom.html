@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital CMOS Standard-Cell Library &amp; Hierarchical Custom Layout | Namrata Yadav</title>
+<meta name="description" content="An 11-track standard-cell library and hierarchical digital blocks in SAED 28/32 nm">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="../index.html">Namrata Yadav</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrap crumb"><a href="../projects.html">&larr; All projects</a></div>
+  <div class="wrap detail-head">
+    <span class="badge">Custom layout</span>
+    <h1>Digital CMOS Standard-Cell Library &amp; Hierarchical Custom Layout</h1>
+    <p class="detail-sub">An 11-track standard-cell library and hierarchical digital blocks in SAED 28/32 nm</p>
+    <p class="detail-tools">Synopsys Custom Compiler &middot; IC Validator &middot; StarRC &middot; PrimeWave &middot; SAED 28/32 nm</p>
+  </div>
+  <div class="wrap detail-body">
+
+<div class="block">
+  <h2>Role in the project</h2>
+  <p>Sole author: logic definition and Boolean analysis, transistor-level schematic design, symbol and testbench
+  development, full-custom layout, DRC and LVS closure in IC Validator, parasitic extraction in StarRC, and
+  post-layout simulation and performance analysis in PrimeWave.</p>
+</div>
+
+<div class="block">
+  <h2>Objective</h2>
+  <p>Build a place-and-route-compatible standard-cell library from the transistor level up, then use those cells as
+  the foundation for hierarchical digital blocks &mdash; so the same design decisions can be traced from a single
+  gate through to a multi-block structure.</p>
+</div>
+
+<div class="block">
+  <h2>Standard-cell library</h2>
+  <p>Eight cells at a consistent 11-track height: INV, BUF, NAND2, NOR2, AND2, OR2, XOR2, XNOR2.</p>
+  <ul><li><strong>Consistent cell height and aligned VDD/VSS rails</strong> so cells abut cleanly in a placement row.</li><li><strong>Diffusion sharing</strong> between adjacent devices to cut active area and junction capacitance.</li><li><strong>Euler-path optimisation</strong> where the logic function permitted an uninterrupted diffusion strip.</li><li><strong>Pin-access planning</strong> so router access to every pin exists from the expected metal layer.</li><li><strong>Cell abutment</strong> verified by tiling cells side by side and re-running DRC on the assembled row.</li></ul>
+  <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/standard_cell_library.png" alt="11-track standard-cell library layout"></div><figcaption>11-track standard-cell library layout</figcaption></figure>
+</div>
+
+<div class="block">
+  <h2>Hierarchical digital blocks</h2>
+  <p>Built from the cell library and from custom transistor-level structures:</p>
+  <ul><li>Transmission-gate logic: inverter, AND, OR, NAND, NOR, XOR, XNOR, multiplexer, demultiplexer.</li><li>Combinational arithmetic: half and full adders, half and full subtractors, decoders, encoders.</li><li>Sequential circuits: D and T flip-flops, master&ndash;slave and edge-triggered architectures.</li><li>A 4-bit asynchronous counter built from the custom sequential blocks.</li><li>8:1 serializer and 1:8 deserializer structures.</li></ul>
+  <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/digital_hierarchical_layout.png" alt="Hierarchical block layout assembled from library cells"></div><figcaption>Hierarchical block layout assembled from library cells</figcaption></figure>
+</div>
+
+<div class="block">
+  <h2>How layout decisions affect behaviour</h2>
+  <ul><li><strong>Parasitic capacitance</strong> &mdash; diffusion sharing and shorter internal routing reduce the capacitance a driving stage sees.</li><li><strong>Delay</strong> &mdash; that capacitance, together with device sizing, sets the cell's propagation delay; post-layout delay is what actually matters, not the schematic figure.</li><li><strong>Power</strong> &mdash; dynamic power scales with the switched capacitance, so layout compaction reduces it directly.</li><li><strong>Signal integrity</strong> &mdash; adjacent parallel routing introduces coupling; spacing and layer choice manage it.</li><li><strong>Cell abutment and routability</strong> &mdash; rail alignment and pin placement determine whether the library is usable in an automated flow at all.</li></ul>
+</div>
+
+<div class="block">
+  <h2>Design flow</h2>
+  <div class="flow-vert"><span class="flow-step">Logic definition</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Schematic</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Symbol + testbench</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Pre-layout sim</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Layout</span><span class="flow-arrow">&rarr;</span><span class="flow-step">DRC</span><span class="flow-arrow">&rarr;</span><span class="flow-step">LVS</span><span class="flow-arrow">&rarr;</span><span class="flow-step">PEX</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Post-layout sim</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Timing / power / area</span></div>
+</div>
+
+<div class="block">
+  <h2>Verification</h2>
+  <p>DRC and LVS closed in Synopsys IC Validator, parasitics extracted with StarRC, and pre-layout versus post-layout
+  behaviour correlated in PrimeWave.</p>
+  <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/digital_pex_postlayout.png" alt="Pre-layout versus post-layout simulation comparison"></div><figcaption>Pre-layout versus post-layout simulation comparison</figcaption></figure>
+</div>
+
+<div class="block">
+  <h2>Key learnings</h2>
+  <ul><li>A cell library is an interface contract; height, rails, and pin access matter more than clever internal tricks.</li><li>Euler-path ordering is worth the effort exactly when it removes a diffusion break.</li><li>The post-layout number is the real number &mdash; schematic timing is an estimate.</li></ul>
+</div>
+
+<div class="block"><h2>Repository</h2><a class="btn" href="https://github.com/NamrataVLSI/Digital-Custom-IC">View on GitHub</a></div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Namrata Yadav &middot; M.S. Computer Engineering, San Diego State University</p>
+    <div style="display:flex;gap:18px;">
+      <a href="mailto:namratayadav.cal@gmail.com">namratayadav.cal@gmail.com</a>
+      <a href="https://github.com/NamrataVLSI">GitHub</a>
+      <a href="https://www.linkedin.com/in/namrata-yadav">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

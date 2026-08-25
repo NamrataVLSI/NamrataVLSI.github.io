@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physical Synthesis &amp; Timing Closure of a 32-bit Pipelined ALU | Namrata Yadav</title>
+<meta name="description" content="RTL through synthesis, floorplanning, placement, CTS, routing, and post-route timing closure in SAED 28 nm">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="../index.html">Namrata Yadav</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrap crumb"><a href="../projects.html">&larr; All projects</a></div>
+  <div class="wrap detail-head">
+    <span class="badge">Physical design</span>
+    <h1>Physical Synthesis &amp; Timing Closure of a 32-bit Pipelined ALU</h1>
+    <p class="detail-sub">RTL through synthesis, floorplanning, placement, CTS, routing, and post-route timing closure in SAED 28 nm</p>
+    <p class="detail-tools">Synopsys Design Compiler &middot; IC Compiler II &middot; PrimeTime &middot; TCL &middot; Python &middot; SAED 28 nm</p>
+  </div>
+  <div class="wrap detail-body">
+
+<div class="block">
+  <h2>Role in the project</h2>
+  <p>Sole author: RTL-to-GDS flow execution, SDC constraint authoring, block-level physical implementation, static
+  timing analysis and closure, and TCL/Python automation of the reporting flow.</p>
+</div>
+
+<div class="block">
+  <h2>Design flow</h2>
+  <div class="flow-vert"><span class="flow-step">RTL</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Synthesis</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Floorplan</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Placement</span><span class="flow-arrow">&rarr;</span><span class="flow-step">CTS</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Routing</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Post-route STA</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Timing closure</span></div>
+</div>
+
+<div class="block">
+  <h2>Implementation</h2>
+  <ul><li><strong>Synthesis</strong> in Design Compiler from synthesizable RTL against the SAED 28 nm library.</li><li><strong>Floorplanning, placement, CTS, and routing</strong> in IC Compiler II.</li><li><strong>SDC constraints</strong> authored for clock definition, input/output delays, and design rule limits.</li><li><strong>PrimeTime STA</strong> on critical paths, with setup and hold analysis across the timing graph.</li></ul>
+  <div class="fig-grid">
+    <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/alu_floorplan.png" alt="ICC2 floorplan"></div><figcaption>ICC2 floorplan</figcaption></figure>
+    <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/alu_routed.png" alt="Post-route layout view"></div><figcaption>Post-route layout view</figcaption></figure>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Timing closure</h2>
+  <ul><li>Drove <strong>WNS and TNS</strong> to closure across post-route timing runs.</li><li>Cleared <strong>clock-skew, setup, and hold</strong> violations.</li><li>Cleared <strong>transition, capacitance, and fanout</strong> design-rule violations.</li><li>Fixes applied through <strong>cell sizing, buffer insertion,</strong> and <strong>placement and routing optimisation</strong> rather than by relaxing constraints.</li><li><strong>PPA analysis</strong> across timing, area, power, and cell count at each stage.</li></ul>
+  <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/alu_timing_report.png" alt="PrimeTime post-route timing report"></div><figcaption>PrimeTime post-route timing report</figcaption></figure>
+</div>
+
+<div class="block">
+  <h2>Automation</h2>
+  <p>Timing, area, power, cell-count, and violation reporting were automated in TCL and Python so that every
+  implementation iteration produced a comparable report set instead of hand-collected numbers.</p>
+</div>
+
+<div class="block">
+  <h2>Key learnings</h2>
+  <ul><li>Most timing problems are floorplan problems surfacing late.</li><li>Hold fixing after CTS is a different discipline from setup closure and needs its own pass.</li><li>Automated reporting is what makes iteration-to-iteration comparison meaningful.</li></ul>
+</div>
+
+<div class="block"><h2>Repository</h2><a class="btn" href="https://github.com/NamrataVLSI">View on GitHub</a></div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Namrata Yadav &middot; M.S. Computer Engineering, San Diego State University</p>
+    <div style="display:flex;gap:18px;">
+      <a href="mailto:namratayadav.cal@gmail.com">namratayadav.cal@gmail.com</a>
+      <a href="https://github.com/NamrataVLSI">GitHub</a>
+      <a href="https://www.linkedin.com/in/namrata-yadav">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

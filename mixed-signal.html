@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mixed-Signal IC Design &mdash; PLL, SAR ADC, DAC &amp; SerDes | Namrata Yadav</title>
+<meta name="description" content="Charge-pump PLL and mixed-signal conversion blocks in GPDK45, from architecture through layout and verification">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="../index.html">Namrata Yadav</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrap crumb"><a href="../projects.html">&larr; All projects</a></div>
+  <div class="wrap detail-head">
+    <span class="badge">Mixed-signal</span>
+    <h1>Mixed-Signal IC Design &mdash; PLL, SAR ADC, DAC &amp; SerDes</h1>
+    <p class="detail-sub">Charge-pump PLL and mixed-signal conversion blocks in GPDK45, from architecture through layout and verification</p>
+    <p class="detail-tools">Cadence Virtuoso &middot; Spectre &middot; GPDK45</p>
+  </div>
+  <div class="wrap detail-body">
+
+<div class="block">
+  <h2>Role in the project</h2>
+  <p>Sole author: block-level architecture, transistor-level schematic design, testbench development, pre-layout
+  simulation, layout, and verification, working bottom-up from individual blocks to top-level integration.</p>
+  <div class="note"><strong>Status:</strong> the charge-pump PLL is the block currently implemented in the
+  repository. The SAR ADC, DAC, and SerDes blocks are in progress and are marked as such throughout &mdash; no results
+  are claimed for them.</div>
+</div>
+
+<div class="block">
+  <h2>Phase-locked loop</h2>
+  <p>A charge-pump PLL decomposed into its constituent blocks, each designed and simulated independently before
+  hierarchical integration.</p>
+  <div class="flow-vert"><span class="flow-step">PFD</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Charge pump</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Loop filter</span><span class="flow-arrow">&rarr;</span><span class="flow-step">VCO</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Divider</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Clock buffer</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Top level</span></div>
+  <ul><li><strong>Phase-frequency detector</strong> &mdash; produces up/down pulses proportional to the phase error between reference and feedback clocks.</li><li><strong>Charge pump</strong> &mdash; converts those pulses into charge delivered to the loop filter; current matching between up and down paths determines static phase offset.</li><li><strong>Loop filter</strong> &mdash; integrates charge into the VCO control voltage and shapes the loop dynamics.</li><li><strong>Voltage-controlled oscillator</strong> &mdash; control voltage sets output frequency; the tuning characteristic has to cover the target range with usable linearity.</li><li><strong>Frequency divider</strong> &mdash; closes the loop and sets the multiplication ratio.</li><li><strong>Clock buffer</strong> &mdash; drives the distributed clock load without degrading edge quality.</li><li><strong>Top-level integration</strong> &mdash; hierarchical assembly and transient verification of lock behaviour.</li></ul>
+  <div class="fig-grid">
+    <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/pll_top_level.png" alt="Top-level PLL schematic"></div><figcaption>Top-level PLL schematic</figcaption></figure>
+    <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/pll_layout.png" alt="PLL layout"></div><figcaption>PLL layout</figcaption></figure>
+  </div>
+</div>
+
+<div class="block">
+  <h2>SAR ADC <span class="badge progress" style="vertical-align:middle;margin-left:6px;">In progress</span></h2>
+  <p>Successive-approximation converter planned around a sample-and-hold front end, a comparator, a capacitive DAC,
+  SAR control logic, and clock and timing circuitry, integrated at top level. The operating principle is
+  charge-redistribution: the input is sampled onto the capacitive array, then the SAR logic drives a binary search in
+  which the comparator resolves one bit per cycle.</p>
+</div>
+
+<div class="block">
+  <h2>Digital-to-analog converter <span class="badge progress" style="vertical-align:middle;margin-left:6px;">In progress</span></h2>
+  <p>Architecture selection between capacitive, R-2R ladder, and current-steering approaches is still open; the page
+  will state the implemented topology once it is built.</p>
+</div>
+
+<div class="block">
+  <h2>Serializer and deserializer <span class="badge progress" style="vertical-align:middle;margin-left:6px;">In progress</span></h2>
+  <p>Parallel-to-serial and serial-to-parallel conversion with the associated clocking and timing, functional
+  verification, and top-level integration. Related 8:1 serializer and 1:8 deserializer structures have been built in
+  the digital custom IC work.</p>
+</div>
+
+<div class="block">
+  <h2>Design flow</h2>
+  <div class="flow-vert"><span class="flow-step">Architecture</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Schematic</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Testbench</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Pre-layout sim</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Layout</span><span class="flow-arrow">&rarr;</span><span class="flow-step">DRC / LVS</span><span class="flow-arrow">&rarr;</span><span class="flow-step">PEX</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Post-layout</span></div>
+</div>
+
+<div class="block">
+  <h2>Key learnings</h2>
+  <ul><li>In a PLL the blocks are only meaningful together &mdash; a VCO that meets spec alone can still break lock.</li><li>Charge-pump current matching is a small design detail with a large system-level consequence.</li><li>Bottom-up block verification saves far more time than debugging at top level.</li></ul>
+</div>
+
+<div class="block"><h2>Repository</h2><a class="btn" href="https://github.com/NamrataVLSI/Mixed-Signal-Design">View on GitHub</a></div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Namrata Yadav &middot; M.S. Computer Engineering, San Diego State University</p>
+    <div style="display:flex;gap:18px;">
+      <a href="mailto:namratayadav.cal@gmail.com">namratayadav.cal@gmail.com</a>
+      <a href="https://github.com/NamrataVLSI">GitHub</a>
+      <a href="https://www.linkedin.com/in/namrata-yadav">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

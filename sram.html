@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6T SRAM Bitcell &amp; Array &mdash; Custom Layout | Namrata Yadav</title>
+<meta name="description" content="Cross-coupled 6T bitcell with shared rails, differential bit-lines, and array-level layout in SAED 28/32 nm">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="../index.html">Namrata Yadav</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrap crumb"><a href="../projects.html">&larr; All projects</a></div>
+  <div class="wrap detail-head">
+    <span class="badge">Custom layout</span>
+    <h1>6T SRAM Bitcell &amp; Array &mdash; Custom Layout</h1>
+    <p class="detail-sub">Cross-coupled 6T bitcell with shared rails, differential bit-lines, and array-level layout in SAED 28/32 nm</p>
+    <p class="detail-tools">Synopsys Custom Compiler &middot; IC Validator &middot; StarRC &middot; SAED 28/32 nm</p>
+  </div>
+  <div class="wrap detail-body">
+
+<div class="block">
+  <h2>Role in the project</h2>
+  <p>Sole author: bitcell schematic and sizing, full-custom bitcell layout, array assembly, physical verification,
+  parasitic extraction, and pre-/post-layout correlation.</p>
+  <div class="note">SRAM timing, static noise margin, and power figures are not claimed here &mdash; those
+  characterisation results are not part of the documented result set.</div>
+</div>
+
+<div class="block">
+  <h2>Circuit structure</h2>
+  <ul><li><strong>Cross-coupled inverter pair</strong> forming the bistable storage element.</li><li><strong>Access transistors</strong> connecting the storage nodes to the differential bit-lines, gated by the word line.</li><li><strong>Device ratios</strong> &mdash; the relative strength of pull-down, access, and pull-up devices governs whether the cell can be read without disturbing its state and written when required.</li></ul>
+  <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/sram_6t_schematic.png" alt="6T SRAM bitcell schematic"></div><figcaption>6T SRAM bitcell schematic</figcaption></figure>
+</div>
+
+<div class="block">
+  <h2>Layout and array organisation</h2>
+  <ul><li><strong>Symmetry</strong> between the two storage halves so both states behave identically.</li><li><strong>Shared supply rails</strong> across abutting cells, with mirrored tiling to share contacts and diffusion at cell boundaries.</li><li><strong>Word-line distribution</strong> across the row and <strong>differential bit-lines</strong> down the column.</li><li><strong>Matching and parasitic considerations</strong> &mdash; bit-line capacitance grows with array height and directly affects read behaviour, so column routing was kept tight and balanced between BL and BLB.</li></ul>
+  <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/sram_6t_array.png" alt="6T SRAM array layout"></div><figcaption>6T SRAM array layout</figcaption></figure>
+</div>
+
+<div class="block">
+  <h2>Verification flow</h2>
+  <div class="flow-vert"><span class="flow-step">Bitcell layout</span><span class="flow-arrow">&rarr;</span><span class="flow-step">DRC</span><span class="flow-arrow">&rarr;</span><span class="flow-step">LVS</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Array tiling</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Array DRC / LVS / ERC</span><span class="flow-arrow">&rarr;</span><span class="flow-step">PEX</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Pre-/post-layout correlation</span></div>
+</div>
+
+<div class="block">
+  <h2>Key learnings</h2>
+  <ul><li>The bitcell is a tiling problem: what happens at the boundary matters as much as what happens inside.</li><li>Bit-line parasitics are an array-level property that a single-cell view never exposes.</li><li>Cell symmetry has to survive contact and via placement, not just device placement.</li></ul>
+</div>
+
+<div class="block"><h2>Repository</h2><a class="btn" href="https://github.com/NamrataVLSI/Digital-Custom-IC">View on GitHub</a></div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Namrata Yadav &middot; M.S. Computer Engineering, San Diego State University</p>
+    <div style="display:flex;gap:18px;">
+      <a href="mailto:namratayadav.cal@gmail.com">namratayadav.cal@gmail.com</a>
+      <a href="https://github.com/NamrataVLSI">GitHub</a>
+      <a href="https://www.linkedin.com/in/namrata-yadav">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

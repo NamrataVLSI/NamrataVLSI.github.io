@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CMOS Temperature Sensor &amp; Reliability-Aware Analog Design | Namrata Yadav</title>
+<meta name="description" content="CTAT/PTAT sensing core with a Miller-compensated two-stage op-amp, characterised over PVT, mismatch, and aging">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="../index.html">Namrata Yadav</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrap crumb"><a href="../projects.html">&larr; All projects</a></div>
+  <div class="wrap detail-head">
+    <span class="badge">Analog design</span>
+    <h1>CMOS Temperature Sensor &amp; Reliability-Aware Analog Design</h1>
+    <p class="detail-sub">CTAT/PTAT sensing core with a Miller-compensated two-stage op-amp, characterised over PVT, mismatch, and aging</p>
+    <p class="detail-tools">Cadence Virtuoso &middot; Spectre &middot; Maestro &middot; GPDK45</p>
+  </div>
+  <div class="wrap detail-body">
+
+<div class="block">
+  <h2>Role in the project</h2>
+  <p>Sole author: sensing architecture, transistor-level design of the sensing core and the two-stage op-amp, device
+  sizing and bias-current selection, compensation design, temperature and PVT characterisation, Monte Carlo mismatch
+  analysis, reliability aging analysis, and full-custom layout with post-layout evaluation.</p>
+</div>
+
+<div class="block">
+  <h2>Results</h2>
+  <div class="metrics"><div class="metric"><div class="k">Temperature range</div><div class="v">&minus;25 to 125&deg;C</div></div><div class="metric"><div class="k">Span</div><div class="v">150&deg;C</div></div><div class="metric"><div class="k">CTAT bias</div><div class="v">2 &micro;A</div></div><div class="metric"><div class="k">Sensitivity</div><div class="v">&minus;0.201 mV/&deg;C</div></div></div>
+  <p style="margin-top:14px;">The 2 &micro;A bias point was selected because it holds monotonic operation across the
+  full 150&deg;C span &mdash; monotonicity was the selection criterion, not raw sensitivity.</p>
+</div>
+
+<div class="block">
+  <h2>Architecture</h2>
+  <p>A CTAT/PTAT sensing core produces the temperature-dependent signal, read out through a Miller-compensated
+  two-stage operational amplifier.</p>
+  <div class="flow-vert"><span class="flow-step">CTAT / PTAT core</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Bias selection</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Two-stage op-amp</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Compensation</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Readout</span></div>
+  <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/tempsensor_schematic.png" alt="Temperature sensor schematic with CTAT/PTAT core and two-stage op-amp"></div><figcaption>Temperature sensor schematic with CTAT/PTAT core and two-stage op-amp</figcaption></figure>
+</div>
+
+<div class="block">
+  <h2>Analog design considerations</h2>
+  <ul><li><strong>Biasing</strong> &mdash; bias current was swept and evaluated for sensitivity, monotonicity, and power, with 2 &micro;A chosen as the operating point.</li><li><strong>Op-amp design</strong> &mdash; a two-stage topology for gain, with Miller compensation setting the dominant pole and therefore the phase margin.</li><li><strong>Device sizing</strong> &mdash; tuned jointly against sensitivity, gain, stability, and power rather than for any single figure.</li><li><strong>Temperature behaviour</strong> &mdash; V<sub>TH</sub>, g<sub>m</sub>, and I<sub>D</sub> trends were extracted across the sweep to understand where the sensing slope comes from and where it degrades.</li><li><strong>PVT analysis</strong> &mdash; corner simulation to confirm behaviour holds outside the nominal case.</li><li><strong>Monte Carlo mismatch</strong> &mdash; statistical spread of the sensing characteristic under device mismatch.</li><li><strong>Reliability aging</strong> &mdash; MOSRA-based analysis of how device degradation shifts the sensor characteristic over operating lifetime.</li><li><strong>Layout considerations</strong> &mdash; matching-driven placement for the sensing devices, since mismatch appears directly as a temperature-reading offset.</li></ul>
+</div>
+
+<div class="block">
+  <h2>Characterisation</h2>
+  <div class="fig-grid">
+    <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/temperature_sensor_sweep.png" alt="Output versus temperature across the &minus;25 to 125&deg;C sweep"></div><figcaption>Output versus temperature across the &minus;25 to 125&deg;C sweep</figcaption></figure>
+    <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/tempsensor_vth_gm_id.png" alt="V<sub>TH</sub>, g<sub>m</sub>, and I<sub>D</sub> trends over temperature"></div><figcaption>V<sub>TH</sub>, g<sub>m</sub>, and I<sub>D</sub> trends over temperature</figcaption></figure>
+    <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/tempsensor_monte_carlo.png" alt="Monte Carlo mismatch distribution"></div><figcaption>Monte Carlo mismatch distribution</figcaption></figure>
+    <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/tempsensor_aging.png" alt="Reliability aging analysis"></div><figcaption>Reliability aging analysis</figcaption></figure>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Key learnings</h2>
+  <ul><li>Monotonicity across the full range is worth more than a steeper slope over part of it.</li><li>Mismatch, not sensitivity, sets the practical accuracy floor of a sensor like this.</li><li>Aging analysis changes which bias point looks correct &mdash; the best day-one point is not always the best end-of-life point.</li></ul>
+</div>
+
+<div class="block"><h2>Repository</h2><a class="btn" href="https://github.com/NamrataVLSI">View on GitHub</a></div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Namrata Yadav &middot; M.S. Computer Engineering, San Diego State University</p>
+    <div style="display:flex;gap:18px;">
+      <a href="mailto:namratayadav.cal@gmail.com">namratayadav.cal@gmail.com</a>
+      <a href="https://github.com/NamrataVLSI">GitHub</a>
+      <a href="https://www.linkedin.com/in/namrata-yadav">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

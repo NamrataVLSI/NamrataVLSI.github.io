@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects | Namrata Yadav</title>
+<meta name="description" content="Analog, mixed-signal, custom layout, physical verification, and physical design projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Namrata Yadav</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="experience.html">Experience</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="section" style="padding-top:56px;">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <p>Analog and mixed-signal circuit design, custom IC layout, physical verification, and digital physical
+      design. Each project separates what was designed, what was simulated, what was laid out, and what was
+      verified.</p>
+    </div>
+    <div class="filter-row"><button class="filter-btn active" data-filter="all">All projects</button><button class="filter-btn" data-filter="analog-design">Analog design</button><button class="filter-btn" data-filter="analog-layout">Analog layout</button><button class="filter-btn" data-filter="mixed-signal">Mixed-signal</button><button class="filter-btn" data-filter="custom-layout">Custom layout</button><button class="filter-btn" data-filter="physical-verification">Physical verification</button><button class="filter-btn" data-filter="physical-design">Physical design</button></div>
+    <div class="proj-grid">
+      <article class="proj-card" data-cats="analog-design custom-layout">
+        <div class="proj-thumb"><img class="shot" src="assets/projects/lif_neuron_layout.png" alt="CMOS Leaky Integrate-and-Fire Neuromorphic Neuron"></div>
+        <div class="proj-body">
+          <span class="badge">Analog design</span>
+          <h3>CMOS Leaky Integrate-and-Fire Neuromorphic Neuron</h3>
+          <p class="proj-desc">Transistor-level LIF neuron with membrane integration, leakage, threshold detection, spiking, and reset, calibrated into a Python SNN model.</p>
+          <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; Python &middot; SpikingJelly &middot; CMOS</p>
+          <div class="proj-metric"><strong>94.5%</strong> circuit-calibrated MNIST accuracy vs. 97.4% ideal</div>
+          <div class="proj-links"><a href="projects/lif-neuron.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI">GitHub &rarr;</a></div>
+        </div>
+      </article>
+      <article class="proj-card" data-cats="analog-design analog-layout physical-verification">
+        <div class="proj-thumb"><img class="shot" src="assets/projects/analog_ota_layout.png" alt="Analog IC Design &amp; Full-Custom Layout"></div>
+        <div class="proj-body">
+          <span class="badge">Analog design</span>
+          <h3>Analog IC Design &amp; Full-Custom Layout</h3>
+          <p class="proj-desc">Ten analog CMOS blocks &mdash; BGR, LDO, OTA, op-amp, comparator, mirrors and more &mdash; each taken from specification to verified layout.</p>
+          <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; PVS &middot; GPDK45</p>
+          
+          <div class="proj-links"><a href="projects/analog-ic.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Analog-IC-Design-and-Layout-">GitHub &rarr;</a></div>
+        </div>
+      </article>
+      <article class="proj-card" data-cats="analog-design analog-layout">
+        <div class="proj-thumb"><img class="shot" src="assets/projects/ldo_layout.png" alt="Low-Dropout Regulator &mdash; Analog Design &amp; Layout"></div>
+        <div class="proj-body">
+          <span class="badge">Analog design</span>
+          <h3>Low-Dropout Regulator &mdash; Analog Design &amp; Layout</h3>
+          <p class="proj-desc">PMOS-pass-device LDO designed for regulation and loop stability, characterised through DC, transient, PSRR, and stability analysis.</p>
+          <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; GPDK45</p>
+          <div class="proj-metric"><strong>1.192 V</strong> out &middot; <strong>149.8 mV</strong> dropout &middot; <strong>90.46&deg;</strong> phase margin</div>
+          <div class="proj-links"><a href="projects/ldo.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Analog-IC-Design-and-Layout-">GitHub &rarr;</a></div>
+        </div>
+      </article>
+      <article class="proj-card" data-cats="analog-design analog-layout">
+        <div class="proj-thumb"><img class="shot" src="assets/projects/bandgap_common_centroid_layout.png" alt="Bandgap Reference &mdash; Analog Design &amp; Full-Custom Layout"></div>
+        <div class="proj-body">
+          <span class="badge">Analog layout</span>
+          <h3>Bandgap Reference &mdash; Analog Design &amp; Full-Custom Layout</h3>
+          <p class="proj-desc">Precision voltage reference built on PTAT/CTAT compensation, with matching-driven layout of a 5 &times; 5 common-centroid BJT array.</p>
+          <p class="proj-tools">Cadence Virtuoso &middot; GPDK45</p>
+          <div class="proj-metric"><strong>5 &times; 5</strong> common-centroid BJT array</div>
+          <div class="proj-links"><a href="projects/bandgap.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Analog-IC-Design-and-Layout-">GitHub &rarr;</a></div>
+        </div>
+      </article>
+      <article class="proj-card" data-cats="mixed-signal analog-design">
+        <div class="proj-thumb"><img class="shot" src="assets/projects/pll_top_level.png" alt="Mixed-Signal IC Design &mdash; PLL, SAR ADC, DAC &amp; SerDes"></div>
+        <div class="proj-body">
+          <span class="badge">Mixed-signal</span>
+          <h3>Mixed-Signal IC Design &mdash; PLL, SAR ADC, DAC &amp; SerDes</h3>
+          <p class="proj-desc">Charge-pump PLL built block by block, with SAR ADC, DAC, and SerDes blocks following the same hierarchical flow.</p>
+          <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; GPDK45</p>
+          
+          <div class="proj-links"><a href="projects/mixed-signal.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Mixed-Signal-Design">GitHub &rarr;</a></div>
+        </div>
+      </article>
+      <article class="proj-card" data-cats="custom-layout physical-verification">
+        <div class="proj-thumb"><img class="shot" src="assets/projects/standard_cell_library.png" alt="Digital CMOS Standard-Cell Library &amp; Hierarchical Custom Layout"></div>
+        <div class="proj-body">
+          <span class="badge">Custom layout</span>
+          <h3>Digital CMOS Standard-Cell Library &amp; Hierarchical Custom Layout</h3>
+          <p class="proj-desc">An 11-track cell library with consistent height and aligned rails, plus transmission-gate logic, flip-flops, counters, and SerDes blocks.</p>
+          <p class="proj-tools">Synopsys Custom Compiler &middot; IC Validator &middot; StarRC &middot; PrimeWave &middot; SAED 28/32 nm</p>
+          <div class="proj-metric"><strong>11-track</strong> library &middot; 8 cells &middot; DRC/LVS/PEX clean</div>
+          <div class="proj-links"><a href="projects/digital-custom.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Digital-Custom-IC">GitHub &rarr;</a></div>
+        </div>
+      </article>
+      <article class="proj-card" data-cats="custom-layout physical-verification">
+        <div class="proj-thumb"><img class="shot" src="assets/projects/sram_6t_array.png" alt="6T SRAM Bitcell &amp; Array &mdash; Custom Layout"></div>
+        <div class="proj-body">
+          <span class="badge">Custom layout</span>
+          <h3>6T SRAM Bitcell &amp; Array &mdash; Custom Layout</h3>
+          <p class="proj-desc">6T bitcell and array with shared supply rails, word-line distribution, and differential bit-lines, verified and extracted.</p>
+          <p class="proj-tools">Synopsys Custom Compiler &middot; IC Validator &middot; StarRC &middot; SAED 28/32 nm</p>
+          <div class="proj-metric">DRC/LVS/ERC clean &middot; PEX correlated</div>
+          <div class="proj-links"><a href="projects/sram.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Digital-Custom-IC">GitHub &rarr;</a></div>
+        </div>
+      </article>
+      <article class="proj-card" data-cats="physical-design">
+        <div class="proj-thumb"><img class="shot" src="assets/projects/alu_floorplan.png" alt="Physical Synthesis &amp; Timing Closure of a 32-bit Pipelined ALU"></div>
+        <div class="proj-body">
+          <span class="badge">Physical design</span>
+          <h3>Physical Synthesis &amp; Timing Closure of a 32-bit Pipelined ALU</h3>
+          <p class="proj-desc">A synthesizable 32-bit pipelined ALU taken from RTL to post-route timing closure, with SDC authoring and automated reporting.</p>
+          <p class="proj-tools">Synopsys Design Compiler &middot; IC Compiler II &middot; PrimeTime &middot; TCL &middot; Python &middot; SAED 28 nm</p>
+          <div class="proj-metric">Post-route STA &middot; WNS/TNS driven to closure</div>
+          <div class="proj-links"><a href="projects/physical-design-alu.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI">GitHub &rarr;</a></div>
+        </div>
+      </article>
+      <article class="proj-card" data-cats="analog-design analog-layout">
+        <div class="proj-thumb"><img class="shot" src="assets/projects/temperature_sensor_sweep.png" alt="CMOS Temperature Sensor &amp; Reliability-Aware Analog Design"></div>
+        <div class="proj-body">
+          <span class="badge">Analog design</span>
+          <h3>CMOS Temperature Sensor &amp; Reliability-Aware Analog Design</h3>
+          <p class="proj-desc">Temperature-sensing core designed for monotonic operation across 150&deg;C, with PVT, Monte Carlo mismatch, and aging analysis.</p>
+          <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; Maestro &middot; GPDK45</p>
+          <div class="proj-metric"><strong>&minus;25&deg;C to 125&deg;C</strong> &middot; <strong>&minus;0.201 mV/&deg;C</strong> at a 2 &micro;A CTAT bias</div>
+          <div class="proj-links"><a href="projects/temperature-sensor.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI">GitHub &rarr;</a></div>
+        </div>
+      </article>
+      <article class="proj-card" data-cats="custom-layout mixed-signal">
+        <div class="proj-thumb"><img class="shot" src="assets/projects/nn_video_architecture.png" alt="Neural Network-Based Video Processing Block for Color Detection"></div>
+        <div class="proj-body">
+          <span class="badge">VLSI course project</span>
+          <h3>Neural Network-Based Video Processing Block for Color Detection</h3>
+          <p class="proj-desc">COMPE572 course project: a synthesizable video-processing block carried through modelling, schematic design, floorplanning, layout, and system-level validation.</p>
+          <p class="proj-tools">Cadence Virtuoso &middot; Verilog HDL &middot; Xcelium &middot; FPGA-oriented architecture</p>
+          
+          <div class="proj-links"><a href="projects/neural-network-video-processing.html">View project &rarr;</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Namrata Yadav &middot; M.S. Computer Engineering, San Diego State University</p>
+    <div style="display:flex;gap:18px;">
+      <a href="mailto:namratayadav.cal@gmail.com">namratayadav.cal@gmail.com</a>
+      <a href="https://github.com/NamrataVLSI">GitHub</a>
+      <a href="https://www.linkedin.com/in/namrata-yadav">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CMOS Leaky Integrate-and-Fire Neuromorphic Neuron | Namrata Yadav</title>
+<meta name="description" content="Transistor-level analog CMOS design, neuromorphic hardware, custom layout, and system-level calibration">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="../index.html">Namrata Yadav</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrap crumb"><a href="../projects.html">&larr; All projects</a></div>
+  <div class="wrap detail-head">
+    <span class="badge">Analog design</span>
+    <h1>CMOS Leaky Integrate-and-Fire Neuromorphic Neuron</h1>
+    <p class="detail-sub">Transistor-level analog CMOS design, neuromorphic hardware, custom layout, and system-level calibration</p>
+    <p class="detail-tools">Cadence Virtuoso &middot; Spectre &middot; Python &middot; SpikingJelly &middot; CMOS</p>
+  </div>
+  <div class="wrap detail-body">
+
+<div class="block">
+  <h2>Role in the project</h2>
+  <p>Research assistant work under Dr. Hakan Toreyin at San Diego State University (Nov 2025 &ndash; present). My
+  contribution covered circuit architecture, transistor-level design and sizing, Spectre simulation and
+  characterisation, parasitic-aware custom layout of the neuron cell, and the system-level modelling that ported
+  measured circuit parameters into a Python spiking neural network.</p>
+  <div class="note">Academic research project. No silicon fabrication or tapeout &mdash; all results are from
+  schematic and post-layout simulation, and from a software model calibrated with those simulated parameters.</div>
+</div>
+
+<div class="block">
+  <h2>Objective</h2>
+  <p>Build a compact analog CMOS neuron that reproduces leaky integrate-and-fire dynamics directly in hardware,
+  characterise it in simulation, and then quantify what the circuit's non-idealities cost at the network level by
+  feeding its measured behaviour back into a spiking neural network trained on MNIST.</p>
+</div>
+
+<div class="block">
+  <h2>Architecture</h2>
+  <p>The neuron decomposes into four functional stages: an input current path that charges the membrane node, a
+  leakage path that discharges it, a threshold-detection stage, and spike generation with reset.</p>
+  <div class="flow-vert"><span class="flow-step">Input current</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Membrane integration</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Leakage</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Threshold detect</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Spike + reset</span></div>
+  <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/lif_neuron_schematic.png" alt="Transistor-level LIF neuron schematic in Cadence Virtuoso"></div><figcaption>Transistor-level LIF neuron schematic in Cadence Virtuoso</figcaption></figure>
+</div>
+
+<div class="block">
+  <h2>Analog design considerations</h2>
+  <ul><li><strong>Membrane node behaviour</strong> &mdash; the membrane capacitance and the net charging current set the integration rate; the node is high-impedance, so any coupled charge injection shifts the effective input.</li><li><strong>Leakage current</strong> &mdash; the leakage path fixes the membrane time constant and how quickly sub-threshold input history decays. Sizing it too aggressively suppresses temporal integration entirely.</li><li><strong>Current-mirror biasing</strong> &mdash; mirrors set the input and leakage currents; mirror accuracy and output impedance directly translate into firing-rate error.</li><li><strong>Threshold sensitivity</strong> &mdash; the detection point determines firing threshold, and small shifts in device sizing move it noticeably in the F&ndash;I response.</li><li><strong>Sizing trade-offs</strong> &mdash; MOSFET sizing was tuned against firing threshold, spike frequency, power, and area rather than optimised for any single one.</li><li><strong>Reset behaviour</strong> &mdash; the reset path has to discharge the membrane node fully without leaving residual charge that biases the next integration cycle.</li><li><strong>Parasitic effects</strong> &mdash; layout parasitics on the membrane node add to the intended capacitance and alter the time constant, which is why the node was routed defensively.</li></ul>
+</div>
+
+<div class="block">
+  <h2>Design flow</h2>
+  <div class="flow-vert"><span class="flow-step">Architecture</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Transistor sizing</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Spectre simulation</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Custom layout</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Characterisation</span><span class="flow-arrow">&rarr;</span><span class="flow-step">SNN calibration</span></div>
+</div>
+
+<div class="block">
+  <h2>Simulation and characterisation</h2>
+  <p>DC and transient analysis in Spectre were used to verify integrate-and-fire operation and to extract the two
+  parameters that matter at network level: the F&ndash;I response and the membrane time constant. Spike waveform shape
+  was checked for clean, non-glitching pulses across the input current range.</p>
+  <div class="fig-grid">
+    <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/lif_spike_waveform.png" alt="Membrane voltage and spike output, transient simulation"></div><figcaption>Membrane voltage and spike output, transient simulation</figcaption></figure>
+    <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/lif_fi_response.png" alt="F&ndash;I response: output firing rate versus input current"></div><figcaption>F&ndash;I response: output firing rate versus input current</figcaption></figure>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Layout</h2>
+  <figure class="figure"><div class="frame"><img class="shot" src="../assets/projects/lif_neuron_layout.png" alt="Parasitic-aware custom layout of the neuron cell"></div><figcaption>Parasitic-aware custom layout of the neuron cell</figcaption></figure>
+  <h3>Layout methodology</h3>
+  <ul><li>Device matching preserved for the mirror pairs that set bias currents.</li><li>Charge-sensitive membrane node routed to minimise coupling area against switching nets.</li><li>Compact placement to keep the cell tileable for array-level replication.</li></ul>
+</div>
+
+<div class="block">
+  <h2>System-level calibration</h2>
+  <p>The measured F&ndash;I response and membrane time constant were ported into a LIF model in Python using
+  SpikingJelly, replacing the framework's idealised neuron parameters. The same network was then trained and evaluated
+  on MNIST twice &mdash; once with default parameters, once circuit-calibrated &mdash; to quantify the accuracy cost of
+  the silicon non-idealities.</p>
+  <div class="metrics"><div class="metric"><div class="k">Circuit-calibrated</div><div class="v">94.5%</div></div><div class="metric"><div class="k">Ideal model</div><div class="v">97.4%</div></div><div class="metric"><div class="k">Accuracy cost</div><div class="v">2.9 pts</div></div><div class="metric"><div class="k">Dataset</div><div class="v">MNIST</div></div></div>
+</div>
+
+<div class="block">
+  <h2>Key learnings</h2>
+  <ul><li>Bias-current accuracy in the mirrors matters more to firing behaviour than raw transistor strength.</li><li>The membrane node is the parasitic-critical net; layout decisions there change measured dynamics.</li><li>Hardware non-idealities are quantifiable at the application level rather than only at the waveform level.</li><li>Characterisation is only useful if the extracted parameters map cleanly onto the software model's variables.</li></ul>
+</div>
+
+<div class="block"><h2>Repository</h2><a class="btn" href="https://github.com/NamrataVLSI">View on GitHub</a></div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Namrata Yadav &middot; M.S. Computer Engineering, San Diego State University</p>
+    <div style="display:flex;gap:18px;">
+      <a href="mailto:namratayadav.cal@gmail.com">namratayadav.cal@gmail.com</a>
+      <a href="https://github.com/NamrataVLSI">GitHub</a>
+      <a href="https://www.linkedin.com/in/namrata-yadav">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

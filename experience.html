@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experience | Namrata Yadav</title>
+<meta name="description" content="Research, internship, and teaching experience in analog CMOS design and custom IC layout.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Namrata Yadav</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="experience.html">Experience</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="section" style="padding-top:56px;">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <p>Research, industry internship, and teaching roles across analog circuit design, custom layout, and
+      laboratory instruction.</p>
+    </div>
+    <div class="exp-grid">
+
+      <article class="exp-card featured">
+        <div class="exp-org">
+          <div class="exp-logo">SDSU</div>
+          <div>
+            <h3>Research Assistant &mdash; Neuromorphic Hardware Co-Design</h3>
+            <p class="exp-meta">San Diego State University &middot; Nov 2025 &ndash; Present</p>
+          </div>
+        </div>
+        <p>Designed and sized a transistor-level CMOS leaky integrate-and-fire neuron implementing membrane
+        integration, leakage, threshold detection, spike generation, and reset &mdash; then carried it through custom
+        layout and back into a system-level model.</p>
+        <div class="flow-vert" style="margin-bottom:16px;">
+          <span class="flow-step">Analog circuit design</span><span class="flow-arrow">&rarr;</span>
+          <span class="flow-step">Transistor sizing</span><span class="flow-arrow">&rarr;</span>
+          <span class="flow-step">Simulation</span><span class="flow-arrow">&rarr;</span>
+          <span class="flow-step">Custom layout</span><span class="flow-arrow">&rarr;</span>
+          <span class="flow-step">System-level calibration</span>
+        </div>
+        <ul>
+          <li><strong>Circuit design.</strong> Functional decomposition of the neuron, current-mirror design and
+          bias-current generation, MOS sizing and operating-point optimisation against firing-threshold,
+          spike-frequency, power, and area trade-offs.</li>
+          <li><strong>Circuit behaviour.</strong> Membrane-node capacitance and leakage behaviour, threshold
+          detection, and reset circuitry.</li>
+          <li><strong>Simulation.</strong> Transient and DC analysis in Spectre; F&ndash;I response
+          characterisation, membrane time-constant extraction, and spike waveform analysis.</li>
+          <li><strong>Layout.</strong> Parasitic-aware custom layout preserving device matching, with defensive
+          routing on the charge-sensitive membrane node.</li>
+          <li><strong>System level.</strong> Ported measured circuit parameters into a Python/SpikingJelly LIF model
+          and quantified the cost of silicon non-idealities on MNIST: <strong>94.5% circuit-calibrated vs. 97.4%
+          ideal</strong>.</li>
+        </ul>
+        <p class="tagline">analog cmos &middot; neuromorphic circuits &middot; cadence virtuoso &middot; spectre &middot; custom layout &middot; python</p>
+      </article>
+
+      <article class="exp-card">
+        <div class="exp-org">
+          <div class="exp-logo">TIV</div>
+          <div>
+            <h3>IC Layout Design Intern</h3>
+            <p class="exp-meta">Takshila Institute of VLSI Technologies &middot; Aug 2023 &ndash; Apr 2024</p>
+          </div>
+        </div>
+        <ul>
+          <li>Delivered full-custom CMOS and FinFET layouts &mdash; combinational logic cells and a five-stage ring
+          oscillator &mdash; under strict geometry constraints.</li>
+          <li>Applied floorplanning, device matching, diffusion sharing, and fin-quantized sizing.</li>
+          <li>Closed DRC and LVS on every deliverable through iterative debug of spacing, enclosure, connectivity,
+          device-geometry, and mismatch violations.</li>
+        </ul>
+        <p>This internship is where schematic-to-layout correspondence stopped being a concept and became a working
+        habit: translating circuit intent into geometry that is both manufacturable and verifiable.</p>
+        <p class="tagline">full-custom layout &middot; cmos &middot; finfet &middot; drc/lvs &middot; floorplanning</p>
+      </article>
+
+      <article class="exp-card">
+        <div class="exp-org">
+          <div class="exp-logo">SDSU</div>
+          <div>
+            <h3>Graduate Teaching Associate</h3>
+            <p class="exp-meta">San Diego State University &middot; Aug 2025 &ndash; Present</p>
+          </div>
+        </div>
+        <ul>
+          <li>Lead circuits, electromagnetism, and optics laboratories for approximately 50 students per semester.</li>
+          <li>Instrumentation, measurement, and circuit debugging; explaining analog and electrical concepts to
+          students at a range of levels.</li>
+        </ul>
+        <p class="tagline">circuit analysis &middot; measurement &middot; debugging &middot; instrumentation</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Namrata Yadav &middot; M.S. Computer Engineering, San Diego State University</p>
+    <div style="display:flex;gap:18px;">
+      <a href="mailto:namratayadav.cal@gmail.com">namratayadav.cal@gmail.com</a>
+      <a href="https://github.com/NamrataVLSI">GitHub</a>
+      <a href="https://www.linkedin.com/in/namrata-yadav">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
