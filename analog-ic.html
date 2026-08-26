@@ -88,11 +88,57 @@
 
 <div class="block">
   <h2>Layout methodology</h2>
-  <ul><li><strong>Common-centroid placement</strong> for matched pairs and reference arrays, cancelling first-order process gradients.</li><li><strong>Interdigitation</strong> for differential pairs and mirror devices.</li><li><strong>Dummy devices</strong> at array edges so every active device sees the same local environment.</li><li><strong>Guard rings and deep N-well isolation</strong> to contain substrate noise and prevent latch-up.</li><li><strong>Symmetry-aware and matching-critical routing</strong> so that matched devices also see matched interconnect parasitics.</li><li><strong>Shielding</strong> on sensitive high-impedance nets where routing density allowed it.</li></ul>
+  <p>Analog layout is not drawing the schematic in geometry &mdash; it is deciding which physical effects the circuit
+  can tolerate and which it cannot. These are the considerations I worked through on each block.</p>
+
+  <h3>Matching and placement</h3>
+  <ul><li><strong>Common-centroid placement</strong> for matched pairs and reference arrays, so a linear process or thermal gradient across the die contributes equally to both halves and cancels to first order.</li><li><strong>Interdigitation</strong> for differential pairs and mirror devices, splitting each device into fingers and alternating them so the two devices share the same average environment.</li><li><strong>Dummy devices</strong> at array edges. An edge device etches differently from an interior one, so without dummies the outermost real device is systematically mismatched.</li><li><strong>Identical orientation</strong> for matched devices &mdash; same direction, same finger count, same contact arrangement. Mirroring a device is not the same as matching it.</li><li><strong>Diffusion sharing</strong> between series devices where it reduces junction area without breaking the matching arrangement.</li></ul>
+
+  <h3>Layout-dependent effects (LDE)</h3>
+  <p>At modern nodes the surroundings of a device change its behaviour, so identical schematic devices can behave
+  differently purely because of where they sit. The effects I designed around:</p>
+  <ul><li><strong>Well proximity effect (WPE)</strong> &mdash; ions scattering off the well mask edge during implant shift the threshold voltage of devices near a well boundary. Matched devices were kept at the same distance from the well edge, and critical devices pulled away from it.</li><li><strong>STI stress / length-of-diffusion (LOD)</strong> &mdash; shallow-trench-isolation compressive stress changes mobility as a function of how much diffusion sits between the gate and the trench edge. Matched devices were given equal diffusion extension on both sides.</li><li><strong>Poly spacing effect (PSE / OSE)</strong> &mdash; the pitch to neighbouring poly affects the printed gate length, so matched devices were given identical poly neighbourhoods rather than left with different spacing on each side.</li><li><strong>Why it matters here</strong> &mdash; in a current mirror or a differential pair the whole design assumes two devices are the same. Any LDE asymmetry appears directly as mirror-ratio error or input offset, and schematic simulation will not show it unless the extraction accounts for it.</li></ul>
+
+  <h3>Isolation and latch-up prevention</h3>
+  <ul><li><strong>Substrate and well taps</strong> placed close to every device group, tying the substrate and wells down locally so injected current cannot raise the local potential enough to forward-bias a junction.</li><li><strong>Guard rings</strong> around sensitive analog devices &mdash; p+ rings to collect substrate minority carriers, n+ rings in the well &mdash; which both reduce coupled noise and break the parasitic PNPN path that causes latch-up.</li><li><strong>Deep N-well isolation</strong> for blocks that must be kept off the common substrate, giving the device group its own isolated pocket.</li><li><strong>Spacing between injectors and sensitive devices</strong>, since latch-up risk and substrate coupling both fall off with distance from the switching source.</li><li><strong>Substrate-noise isolation</strong> generally: keeping switching digital-style nodes and quiet analog nodes physically separated rather than relying on the supply to reject the difference.</li></ul>
+
+  <h3>Power planning, EM and IR drop</h3>
+  <ul><li><strong>Supply routing width set by current</strong>, not by convenience &mdash; a wire has a maximum current density before electromigration becomes a reliability concern, so branches carrying real current were widened and given adequate via arrays rather than single vias.</li><li><strong>Via arrays at supply transitions</strong>, because a single via is usually the electromigration bottleneck in an otherwise wide path.</li><li><strong>IR drop awareness</strong> &mdash; resistance in the supply path drops voltage before it reaches the device, which eats headroom that biasing calculations assumed was available. Long thin supply routes to a bias branch quietly change its operating point.</li><li><strong>Separate quiet and noisy supply routing</strong> where the block allowed it, so switching return current does not share a path with a reference branch.</li><li><strong>Star-style distribution</strong> for bias and reference nets, so each branch sees the supply directly instead of through another branch's IR drop.</li></ul>
+
+  <h3>Routing, parasitics and manufacturability</h3>
+  <ul><li><strong>Parasitic-aware routing</strong> &mdash; high-impedance and high-gain nodes routed short and narrow to limit added capacitance, while low-impedance and current-carrying nets are routed wide.</li><li><strong>Matching-critical routing</strong> &mdash; matched devices routed with matched interconnect, so the two paths carry the same resistance and capacitance. Careful placement followed by careless routing reintroduces the mismatch that placement removed.</li><li><strong>Shielding</strong> on sensitive nets where routing density allowed it, with a quiet net or ground line placed between an aggressor and a victim.</li><li><strong>Crosstalk avoidance</strong> &mdash; avoiding long parallel runs between a switching net and a sensitive node on the same or adjacent layers.</li><li><strong>Antenna rule awareness</strong> &mdash; large metal area connected to a gate before the upper layers exist can accumulate charge during processing, so long routes to gates were broken up or jumped to a higher layer.</li><li><strong>Metal density</strong> &mdash; each layer must fall within a density window for chemical-mechanical polishing to planarise evenly. Sparse analog regions need fill, but fill placed next to a sensitive net adds capacitance, so fill exclusion around critical nets was considered rather than filling blindly.</li><li><strong>DFM awareness</strong> generally &mdash; drawing to comfortable margins where the block does not need to be minimum-area, since a layout that only just passes DRC is fragile.</li></ul>
+
   <div class="fig-grid">
     <figure class="figure"><div class="frame"><img class="shot" src="analog_ota_layout.png" alt="Single-stage OTA layout with interdigitated input pair"></div><figcaption>Single-stage OTA layout with interdigitated input pair</figcaption></figure>
     <figure class="figure"><div class="frame"><img class="shot" src="analog_opamp_schematic.png" alt="Two-stage operational amplifier schematic"></div><figcaption>Two-stage operational amplifier schematic</figcaption></figure>
   </div>
+</div>
+
+<div class="block">
+  <h2>How layout choices reach the circuit</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Layout decision</th><th>Physical consequence</th><th>Circuit-level effect</th></tr></thead>
+    <tbody>
+      <tr><td>Placement asymmetry or LDE mismatch</td><td>Threshold and mobility differ between nominally identical
+        devices</td><td>Input offset, mirror-ratio error, reference inaccuracy</td></tr>
+      <tr><td>Routing capacitance on a high-impedance node</td><td>Extra capacitance at a gain node</td>
+        <td>Pole shifts down, bandwidth and phase margin fall</td></tr>
+      <tr><td>Narrow supply or output routing</td><td>Series resistance and IR drop</td>
+        <td>Lost headroom, regulation error, changed bias point</td></tr>
+      <tr><td>Missing or distant substrate taps</td><td>Local substrate potential can shift</td>
+        <td>Substrate coupling, latch-up risk</td></tr>
+      <tr><td>Long parallel routing beside a switching net</td><td>Coupling capacitance</td>
+        <td>Crosstalk onto a sensitive node</td></tr>
+      <tr><td>Blind metal fill near a critical net</td><td>Added parasitic capacitance</td>
+        <td>Bandwidth and settling degrade after extraction</td></tr>
+      <tr><td>Single via on a high-current path</td><td>Current-density hotspot</td>
+        <td>Electromigration reliability concern</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="margin-top:14px;">This is why pre-layout and post-layout results differ, and why PEX is the point at
+  which a layout is actually judged rather than the point at which it is finished.</p>
 </div>
 
 <div class="block">
@@ -104,8 +150,8 @@
 </div>
 
 <div class="block">
-  <h2>Key learnings</h2>
-  <ul><li>Schematic symmetry is not matching; the layout has to enforce it.</li><li>A block that closes DRC but ignores matching intent is a failed analog layout, not a passing one.</li><li>Documenting design intent per block makes design reviews far faster than reading the schematic cold.</li></ul>
+  <h2>What I learned</h2>
+  <ul><li><strong>Schematic symmetry is not matching.</strong> Two devices are only identical if the layout makes their surroundings identical &mdash; orientation, dummies, diffusion extension, poly neighbourhood, and distance from the well edge all count.</li><li><strong>A block that closes DRC but ignores matching intent is a failed analog layout.</strong> Clean verification is the minimum bar, not the goal; the goal is a layout whose parasitics the circuit can live with.</li><li><strong>Layout-dependent effects made me stop treating the schematic as the design.</strong> WPE, STI stress, and poly spacing change device behaviour without changing a single schematic parameter, which is why post-extraction results are the ones that count.</li><li><strong>Power planning is analog design.</strong> IR drop in a supply route removes headroom that the biasing calculation assumed, so where the supply is routed changes the operating point.</li><li><strong>Routing can undo placement.</strong> A careful common-centroid arrangement followed by asymmetric routing reintroduces exactly the mismatch the placement was built to cancel.</li><li><strong>Documenting design intent per block</strong> makes reviews far faster than reading the schematic cold, and forces me to justify choices I would otherwise make by habit.</li></ul>
 </div>
 
 <div class="block"><h2>Repository</h2><a class="btn" href="https://github.com/NamrataVLSI/Analog-IC-Design-and-Layout-">View on GitHub</a></div>

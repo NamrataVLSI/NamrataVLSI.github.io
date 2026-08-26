@@ -29,7 +29,7 @@
     <span class="badge">Analog design</span>
     <h1>CMOS Leaky Integrate-and-Fire Neuromorphic Neuron</h1>
     <p class="detail-sub">Transistor-level analog CMOS design, neuromorphic hardware, custom layout, and system-level calibration</p>
-    <p class="detail-tools">Cadence Virtuoso &middot; Spectre &middot; Python &middot; SpikingJelly &middot; CMOS</p>
+    <p class="detail-tools">Cadence Virtuoso &middot; Spectre &middot; NCSU 0.35 &micro;m &rarr; GPDK45 &middot; Python &middot; SpikingJelly</p>
   </div>
   <div class="wrap detail-body">
 
@@ -42,6 +42,17 @@
   <div class="note">Academic research project. No silicon fabrication or tapeout &mdash; all results are from
   schematic and post-layout simulation, and from a software model calibrated with those simulated parameters.</div>
 </div>
+
+<div class="block">
+  <h2>Technology and current status</h2>
+  <p>The first implementation was built in Cadence using the <strong>NCSU 0.35 &micro;m CDK</strong>. That kit does
+  not support device fingering through a multiplier parameter, so wide devices could not be split into fingers from
+  the device properties &mdash; which constrains both how the sizing can be expressed and how compactly the layout
+  can be drawn.</p>
+  <p>I am therefore <strong>re-sizing and rebuilding the design in GPDK45</strong>, where multiplier-based fingering
+  is available. This is the version I am continuing through the current semester. The results below come from the
+  0.35 &micro;m implementation; the GPDK45 version is in progress and its results are not claimed here.</p>
+  <ul><li><strong>Why fingering matters</strong> &mdash; a single wide device has long gate fingers, which raises gate resistance and makes the drain and source diffusion areas large; splitting the same width into fingers cuts both, and shares diffusion between adjacent fingers.</li><li><strong>Effect on this circuit</strong> &mdash; diffusion capacitance on the membrane node is exactly what sets the integration behaviour, so how the devices are drawn is not cosmetic here.</li><li><strong>What changes in GPDK45</strong> &mdash; the sizing is being redone rather than scaled, because the operating points and available headroom differ between the two technologies.</li></ul>
 
 <div class="block">
   <h2>Objective</h2>

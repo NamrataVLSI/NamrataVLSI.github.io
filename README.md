@@ -30,6 +30,7 @@ Crop out tool licence banners, usernames, and file paths before uploading.
 | Bandgap | Schematic | `bandgap_schematic.png` |
 | Mixed-signal | Top-level PLL schematic | `pll_top_level.png` |
 | Mixed-signal | PLL layout | `pll_layout.png` |
+| Mixed-signal | Serializer / deserializer schematic or layout | `serdes_block.png` |
 | Digital custom | Standard-cell library layout | `standard_cell_library.png` |
 | Digital custom | Hierarchical block layout | `digital_hierarchical_layout.png` |
 | Digital custom | Pre-/post-layout comparison | `digital_pex_postlayout.png` |

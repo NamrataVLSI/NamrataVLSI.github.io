@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mixed-Signal IC Design &mdash; PLL, SAR ADC, DAC &amp; SerDes | Namrata Yadav</title>
-<meta name="description" content="Charge-pump PLL and mixed-signal conversion blocks in GPDK45, from architecture through layout and verification">
+<title>Mixed-Signal IC Design &mdash; PLL &amp; SerDes | Namrata Yadav</title>
+<meta name="description" content="Charge-pump phase-locked loop and an 8:1 serializer / 1:8 deserializer in GPDK45, from block architecture through layout and verification">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -27,8 +27,8 @@
   <div class="wrap crumb"><a href="projects.html">&larr; All projects</a></div>
   <div class="wrap detail-head">
     <span class="badge">Mixed-signal</span>
-    <h1>Mixed-Signal IC Design &mdash; PLL, SAR ADC, DAC &amp; SerDes</h1>
-    <p class="detail-sub">Charge-pump PLL and mixed-signal conversion blocks in GPDK45, from architecture through layout and verification</p>
+    <h1>Mixed-Signal IC Design &mdash; PLL &amp; SerDes</h1>
+    <p class="detail-sub">Charge-pump phase-locked loop and an 8:1 serializer / 1:8 deserializer in GPDK45, from block architecture through layout and verification</p>
     <p class="detail-tools">Cadence Virtuoso &middot; Spectre &middot; GPDK45</p>
   </div>
   <div class="wrap detail-body">
@@ -37,9 +37,9 @@
   <h2>Role in the project</h2>
   <p>Sole author: block-level architecture, transistor-level schematic design, testbench development, pre-layout
   simulation, layout, and verification, working bottom-up from individual blocks to top-level integration.</p>
-  <div class="note"><strong>Status:</strong> the charge-pump PLL is the block currently implemented in the
-  repository. The SAR ADC, DAC, and SerDes blocks are in progress and are marked as such throughout &mdash; no results
-  are claimed for them.</div>
+  <div class="note"><strong>Scope:</strong> this page covers the two blocks that are built &mdash; the charge-pump
+  PLL and the serializer/deserializer pair. A SAR ADC and a DAC are planned for the same repository but are not
+  implemented yet, and nothing is claimed for them.</div>
 </div>
 
 <div class="block">
@@ -55,24 +55,17 @@
 </div>
 
 <div class="block">
-  <h2>SAR ADC <span class="badge progress" style="vertical-align:middle;margin-left:6px;">In progress</span></h2>
-  <p>Successive-approximation converter planned around a sample-and-hold front end, a comparator, a capacitive DAC,
-  SAR control logic, and clock and timing circuitry, integrated at top level. The operating principle is
-  charge-redistribution: the input is sampled onto the capacitive array, then the SAR logic drives a binary search in
-  which the comparator resolves one bit per cycle.</p>
+  <h2>Serializer and deserializer</h2>
+  <p>An 8:1 serializer and a 1:8 deserializer built as a matched pair, converting between an
+  eight-bit parallel word and a single serial stream at eight times the word rate.</p>
+  <ul><li><strong>Parallel-to-serial conversion</strong> &mdash; the eight-bit word is loaded in parallel and shifted out one bit per serial clock cycle.</li><li><strong>Serial-to-parallel conversion</strong> &mdash; incoming bits are shifted in and presented as a parallel word once the full frame has arrived.</li><li><strong>Clocking and timing</strong> &mdash; the serial clock runs at eight times the parallel word rate, so the load and shift phases have to be sequenced without overlap.</li><li><strong>Functional verification</strong> &mdash; simulated across load and shift sequences to confirm bit ordering and frame alignment survive the round trip.</li><li><strong>Hierarchical integration</strong> &mdash; assembled from custom sequential building blocks rather than behavioural models.</li></ul>
+  <figure class="figure"><div class="frame"><img class="shot" src="serdes_block.png" alt="8:1 serializer and 1:8 deserializer structure"></div><figcaption>8:1 serializer and 1:8 deserializer structure</figcaption></figure>
 </div>
 
 <div class="block">
-  <h2>Digital-to-analog converter <span class="badge progress" style="vertical-align:middle;margin-left:6px;">In progress</span></h2>
-  <p>Architecture selection between capacitive, R-2R ladder, and current-steering approaches is still open; the page
-  will state the implemented topology once it is built.</p>
-</div>
-
-<div class="block">
-  <h2>Serializer and deserializer <span class="badge progress" style="vertical-align:middle;margin-left:6px;">In progress</span></h2>
-  <p>Parallel-to-serial and serial-to-parallel conversion with the associated clocking and timing, functional
-  verification, and top-level integration. Related 8:1 serializer and 1:8 deserializer structures have been built in
-  the digital custom IC work.</p>
+  <h2>Planned extensions</h2>
+  <p>A SAR ADC (sample-and-hold, comparator, capacitive DAC, SAR control logic) and a DAC are planned additions to
+  this repository. They are not built yet, so nothing is claimed for them here.</p>
 </div>
 
 <div class="block">
