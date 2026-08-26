@@ -50,7 +50,7 @@
 <section class="section">
   <div class="wrap">
     <div class="section-head"><h2>Explore my work</h2></div>
-    <div class="explore-grid"><a class="explore-card" href="projects.html#analog-design"><div class="explore-icon"><svg viewBox="0 0 24 24"><path d="M2 12h4l3-8 6 16 3-8h4"/></svg></div><h3>Analog circuit design</h3><p>LDO &middot; BGR &middot; OTA &middot; Op-amp &middot; Comparator &middot; Temperature sensor</p></a><a class="explore-card" href="projects.html#mixed-signal"><div class="explore-icon"><svg viewBox="0 0 24 24"><path d="M4 18V6M9 18V10M14 18V8M19 18v-6"/><path d="M2 21h20"/></svg></div><h3>Analog &amp; mixed-signal IC</h3><p>PLL &middot; SerDes &middot; Neuromorphic circuits</p></a><a class="explore-card" href="projects.html#custom-layout"><div class="explore-icon"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1"/><path d="M10 2v4M14 2v4M10 18v4M14 18v4M2 10h4M2 14h4M18 10h4M18 14h4"/></svg></div><h3>Custom IC layout</h3><p>Standard cells &middot; SRAM &middot; Full-custom CMOS &middot; FinFET &middot; DRC/LVS/PEX</p></a><a class="explore-card" href="projects.html#physical-design"><div class="explore-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Physical design</h3><p>RTL-to-GDS &middot; CTS &middot; STA &middot; Timing closure</p></a></div>
+    <div class="explore-grid"><a class="explore-card" href="projects.html"><div class="explore-icon"><svg viewBox="0 0 24 24"><path d="M2 12h4l3-8 6 16 3-8h4"/></svg></div><h3>Analog circuit design</h3><p>LDO &middot; BGR &middot; OTA &middot; Op-amp &middot; Comparator &middot; Temperature sensor</p></a><a class="explore-card" href="projects.html"><div class="explore-icon"><svg viewBox="0 0 24 24"><path d="M4 18V6M9 18V10M14 18V8M19 18v-6"/><path d="M2 21h20"/></svg></div><h3>Analog &amp; mixed-signal IC</h3><p>PLL &middot; SerDes &middot; Neuromorphic circuits</p></a><a class="explore-card" href="projects.html"><div class="explore-icon"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1"/><path d="M10 2v4M14 2v4M10 18v4M14 18v4M2 10h4M2 14h4M18 10h4M18 14h4"/></svg></div><h3>Custom IC layout</h3><p>Standard cells &middot; SRAM &middot; Full-custom CMOS &middot; FinFET &middot; DRC/LVS/PEX</p></a><a class="explore-card" href="projects.html"><div class="explore-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Physical design</h3><p>RTL-to-GDS &middot; CTS &middot; STA &middot; Timing closure</p></a></div>
   </div>
 </section>
 
@@ -95,10 +95,9 @@
       <p>Nine documented IC design and implementation projects. <a href="projects.html">See all &rarr;</a></p>
     </div>
     <div class="proj-grid">
-      <article class="proj-card" data-cats="analog-design custom-layout">
+      <article class="proj-card">
         <div class="proj-thumb"><img class="shot" src="lif_neuron_layout.png" alt="CMOS Leaky Integrate-and-Fire Neuromorphic Neuron"></div>
         <div class="proj-body">
-          <span class="badge">Analog design</span>
           <h3>CMOS Leaky Integrate-and-Fire Neuromorphic Neuron</h3>
           <p class="proj-desc">Transistor-level LIF neuron with membrane integration, leakage, threshold detection, spiking, and reset, calibrated into a Python SNN model.</p>
           <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; NCSU 0.35 &micro;m &rarr; GPDK45 &middot; Python &middot; SpikingJelly</p>
@@ -106,10 +105,9 @@
           <div class="proj-links"><a href="lif-neuron.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI">GitHub &rarr;</a></div>
         </div>
       </article>
-      <article class="proj-card" data-cats="analog-design analog-layout physical-verification">
+      <article class="proj-card">
         <div class="proj-thumb"><img class="shot" src="analog_ota_layout.png" alt="Analog IC Design &amp; Full-Custom Layout"></div>
         <div class="proj-body">
-          <span class="badge">Analog design</span>
           <h3>Analog IC Design &amp; Full-Custom Layout</h3>
           <p class="proj-desc">Ten analog CMOS blocks &mdash; LDO, bandgap reference, OTA, op-amp, comparator, mirrors and more &mdash; each taken from specification to DRC/LVS/ERC-clean layout.</p>
           <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; PVS &middot; GPDK45</p>
@@ -117,10 +115,9 @@
           <div class="proj-links"><a href="analog-ic.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Analog-IC-Design-and-Layout-">GitHub &rarr;</a></div>
         </div>
       </article>
-      <article class="proj-card" data-cats="mixed-signal analog-design">
+      <article class="proj-card">
         <div class="proj-thumb"><img class="shot" src="pll_top_level.png" alt="Mixed-Signal IC Design &mdash; PLL &amp; SerDes"></div>
         <div class="proj-body">
-          <span class="badge">Mixed-signal</span>
           <h3>Mixed-Signal IC Design &mdash; PLL &amp; SerDes</h3>
           <p class="proj-desc">Charge-pump PLL built block by block, plus an 8:1 serializer and 1:8 deserializer with clocking and functional verification.</p>
           <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; GPDK45</p>

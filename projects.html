@@ -28,16 +28,13 @@
   <div class="wrap">
     <div class="section-head">
       <h2>Projects</h2>
-      <p>Analog and mixed-signal circuit design, custom IC layout, physical verification, and digital physical
-      design. Each project separates what was designed, what was simulated, what was laid out, and what was
+      <p>Each project separates what was designed, what was simulated, what was laid out, and what was
       verified.</p>
     </div>
-    <div class="filter-row"><button class="filter-btn active" data-filter="all">All projects</button><button class="filter-btn" data-filter="analog-design">Analog design</button><button class="filter-btn" data-filter="analog-layout">Analog layout</button><button class="filter-btn" data-filter="mixed-signal">Mixed-signal</button><button class="filter-btn" data-filter="custom-layout">Custom layout</button><button class="filter-btn" data-filter="physical-verification">Physical verification</button><button class="filter-btn" data-filter="physical-design">Physical design</button></div>
     <div class="proj-grid">
-      <article class="proj-card" data-cats="analog-design custom-layout">
+      <article class="proj-card">
         <div class="proj-thumb"><img class="shot" src="lif_neuron_layout.png" alt="CMOS Leaky Integrate-and-Fire Neuromorphic Neuron"></div>
         <div class="proj-body">
-          <span class="badge">Analog design</span>
           <h3>CMOS Leaky Integrate-and-Fire Neuromorphic Neuron</h3>
           <p class="proj-desc">Transistor-level LIF neuron with membrane integration, leakage, threshold detection, spiking, and reset, calibrated into a Python SNN model.</p>
           <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; NCSU 0.35 &micro;m &rarr; GPDK45 &middot; Python &middot; SpikingJelly</p>
@@ -45,10 +42,9 @@
           <div class="proj-links"><a href="lif-neuron.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI">GitHub &rarr;</a></div>
         </div>
       </article>
-      <article class="proj-card" data-cats="analog-design analog-layout physical-verification">
+      <article class="proj-card">
         <div class="proj-thumb"><img class="shot" src="analog_ota_layout.png" alt="Analog IC Design &amp; Full-Custom Layout"></div>
         <div class="proj-body">
-          <span class="badge">Analog design</span>
           <h3>Analog IC Design &amp; Full-Custom Layout</h3>
           <p class="proj-desc">Ten analog CMOS blocks &mdash; LDO, bandgap reference, OTA, op-amp, comparator, mirrors and more &mdash; each taken from specification to DRC/LVS/ERC-clean layout.</p>
           <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; PVS &middot; GPDK45</p>
@@ -56,10 +52,9 @@
           <div class="proj-links"><a href="analog-ic.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Analog-IC-Design-and-Layout-">GitHub &rarr;</a></div>
         </div>
       </article>
-      <article class="proj-card" data-cats="mixed-signal analog-design">
+      <article class="proj-card">
         <div class="proj-thumb"><img class="shot" src="pll_top_level.png" alt="Mixed-Signal IC Design &mdash; PLL &amp; SerDes"></div>
         <div class="proj-body">
-          <span class="badge">Mixed-signal</span>
           <h3>Mixed-Signal IC Design &mdash; PLL &amp; SerDes</h3>
           <p class="proj-desc">Charge-pump PLL built block by block, plus an 8:1 serializer and 1:8 deserializer with clocking and functional verification.</p>
           <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; GPDK45</p>
@@ -67,10 +62,9 @@
           <div class="proj-links"><a href="mixed-signal.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Mixed-Signal-Design">GitHub &rarr;</a></div>
         </div>
       </article>
-      <article class="proj-card" data-cats="custom-layout physical-verification">
+      <article class="proj-card">
         <div class="proj-thumb"><img class="shot" src="standard_cell_library.png" alt="Digital CMOS Standard-Cell Library &amp; Hierarchical Custom Layout"></div>
         <div class="proj-body">
-          <span class="badge">Custom layout</span>
           <h3>Digital CMOS Standard-Cell Library &amp; Hierarchical Custom Layout</h3>
           <p class="proj-desc">An 11-track cell library with consistent height and aligned rails, plus transmission-gate logic, flip-flops, counters, SerDes structures, and a 6T SRAM bitcell and array.</p>
           <p class="proj-tools">Synopsys Custom Compiler &middot; IC Validator &middot; StarRC &middot; PrimeWave &middot; SAED 28/32 nm</p>
@@ -78,10 +72,9 @@
           <div class="proj-links"><a href="digital-custom.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Digital-Custom-IC">GitHub &rarr;</a></div>
         </div>
       </article>
-      <article class="proj-card" data-cats="physical-design">
+      <article class="proj-card">
         <div class="proj-thumb"><img class="shot" src="alu_floorplan.png" alt="Physical Synthesis &amp; Timing Closure of a 32-bit Pipelined ALU"></div>
         <div class="proj-body">
-          <span class="badge">Physical design</span>
           <h3>Physical Synthesis &amp; Timing Closure of a 32-bit Pipelined ALU</h3>
           <p class="proj-desc">A synthesizable 32-bit pipelined ALU taken from RTL to post-route timing closure, with SDC authoring and automated reporting.</p>
           <p class="proj-tools">Synopsys Design Compiler &middot; IC Compiler II &middot; PrimeTime &middot; TCL &middot; Python &middot; SAED 28 nm</p>
@@ -89,10 +82,9 @@
           <div class="proj-links"><a href="physical-design-alu.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI">GitHub &rarr;</a></div>
         </div>
       </article>
-      <article class="proj-card" data-cats="analog-design analog-layout">
+      <article class="proj-card">
         <div class="proj-thumb"><img class="shot" src="temperature_sensor_sweep.png" alt="CMOS Temperature Sensor &amp; Reliability-Aware Analog Design"></div>
         <div class="proj-body">
-          <span class="badge">Analog design</span>
           <h3>CMOS Temperature Sensor &amp; Reliability-Aware Analog Design</h3>
           <p class="proj-desc">Temperature-sensing core designed for monotonic operation across 150&deg;C, with PVT, Monte Carlo mismatch, and aging analysis.</p>
           <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; Maestro &middot; GPDK45</p>
@@ -100,10 +92,9 @@
           <div class="proj-links"><a href="temperature-sensor.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI">GitHub &rarr;</a></div>
         </div>
       </article>
-      <article class="proj-card" data-cats="custom-layout mixed-signal">
+      <article class="proj-card">
         <div class="proj-thumb"><img class="shot" src="nn_video_architecture.png" alt="Neural Network-Based Video Processing Block for Color Detection"></div>
         <div class="proj-body">
-          <span class="badge">VLSI course project</span>
           <h3>Neural Network-Based Video Processing Block for Color Detection</h3>
           <p class="proj-desc">COMPE572 course project: a synthesizable video-processing block carried through modelling, schematic design, floorplanning, layout, and system-level validation.</p>
           <p class="proj-tools">Cadence Virtuoso &middot; Verilog HDL &middot; Xcelium &middot; FPGA-oriented architecture</p>
