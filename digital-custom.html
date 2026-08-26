@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Digital CMOS Standard-Cell Library &amp; Hierarchical Custom Layout | Namrata Yadav</title>
-<meta name="description" content="An 11-track standard-cell library and hierarchical digital blocks in SAED 28/32 nm">
+<meta name="description" content="An 11-track standard-cell library, hierarchical digital blocks, and a 6T SRAM bitcell and array in SAED 28/32 nm">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
   <div class="wrap detail-head">
     <span class="badge">Custom layout</span>
     <h1>Digital CMOS Standard-Cell Library &amp; Hierarchical Custom Layout</h1>
-    <p class="detail-sub">An 11-track standard-cell library and hierarchical digital blocks in SAED 28/32 nm</p>
+    <p class="detail-sub">An 11-track standard-cell library, hierarchical digital blocks, and a 6T SRAM bitcell and array in SAED 28/32 nm</p>
     <p class="detail-tools">Synopsys Custom Compiler &middot; IC Validator &middot; StarRC &middot; PrimeWave &middot; SAED 28/32 nm</p>
   </div>
   <div class="wrap detail-body">
@@ -64,6 +64,25 @@
 <div class="block">
   <h2>How layout decisions affect behaviour</h2>
   <ul><li><strong>Parasitic capacitance</strong> &mdash; diffusion sharing and shorter internal routing reduce the capacitance a driving stage sees.</li><li><strong>Delay</strong> &mdash; that capacitance, together with device sizing, sets the cell's propagation delay; post-layout delay is what actually matters, not the schematic figure.</li><li><strong>Power</strong> &mdash; dynamic power scales with the switched capacitance, so layout compaction reduces it directly.</li><li><strong>Signal integrity</strong> &mdash; adjacent parallel routing introduces coupling; spacing and layer choice manage it.</li><li><strong>Cell abutment and routability</strong> &mdash; rail alignment and pin placement determine whether the library is usable in an automated flow at all.</li></ul>
+</div>
+
+
+<div class="block" id="sram">
+  <h2>Featured sub-project &mdash; 6T SRAM Bitcell &amp; Array</h2>
+  <p>A cross-coupled 6T bitcell built as a tileable unit, then replicated into an array with shared rails, word-line
+  distribution, and differential bit-lines.</p>
+  <div class="note">SRAM timing, static noise margin, and power figures are not claimed &mdash; those
+  characterisation results are not part of the documented result set.</div>
+  <h3>Circuit structure</h3>
+  <ul><li><strong>Cross-coupled inverter pair</strong> forming the bistable storage element.</li><li><strong>Access transistors</strong> connecting the storage nodes to the differential bit-lines, gated by the word line.</li><li><strong>Device ratios</strong> &mdash; the relative strength of pull-down, access, and pull-up devices governs whether the cell can be read without disturbing its state and written when required.</li></ul>
+  <h3>Layout and array organisation</h3>
+  <ul><li><strong>Symmetry</strong> between the two storage halves so both states behave identically, maintained through contact and via placement rather than device placement alone.</li><li><strong>Shared supply rails</strong> across abutting cells, with mirrored tiling to share contacts and diffusion at the cell boundaries.</li><li><strong>Word-line distribution</strong> across the row and <strong>differential bit-lines</strong> down the column.</li><li><strong>Bit-line parasitics</strong> &mdash; capacitance grows with array height and directly affects read behaviour, so column routing was kept tight and balanced between BL and BLB.</li></ul>
+  <h3>Verification flow</h3>
+  <div class="flow-vert"><span class="flow-step">Bitcell layout</span><span class="flow-arrow">&rarr;</span><span class="flow-step">DRC</span><span class="flow-arrow">&rarr;</span><span class="flow-step">LVS</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Array tiling</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Array DRC / LVS / ERC</span><span class="flow-arrow">&rarr;</span><span class="flow-step">PEX</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Correlation</span></div>
+  <div class="fig-grid">
+    <figure class="figure"><div class="frame"><img class="shot" src="sram_6t_schematic.png" alt="6T SRAM bitcell schematic"></div><figcaption>6T SRAM bitcell schematic</figcaption></figure>
+    <figure class="figure"><div class="frame"><img class="shot" src="sram_6t_array.png" alt="6T SRAM array layout"></div><figcaption>6T SRAM array layout</figcaption></figure>
+  </div>
 </div>
 
 <div class="block">

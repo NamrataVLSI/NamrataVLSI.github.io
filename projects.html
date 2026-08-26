@@ -50,32 +50,10 @@
         <div class="proj-body">
           <span class="badge">Analog design</span>
           <h3>Analog IC Design &amp; Full-Custom Layout</h3>
-          <p class="proj-desc">Ten analog CMOS blocks &mdash; BGR, LDO, OTA, op-amp, comparator, mirrors and more &mdash; each taken from specification to verified layout.</p>
+          <p class="proj-desc">Ten analog CMOS blocks &mdash; LDO, bandgap reference, OTA, op-amp, comparator, mirrors and more &mdash; each taken from specification to DRC/LVS/ERC-clean layout.</p>
           <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; PVS &middot; GPDK45</p>
-          
+          <div class="proj-metric">LDO: <strong>1.192 V</strong> out &middot; <strong>149.8 mV</strong> dropout &middot; <strong>90.46&deg;</strong> PM &nbsp;|&nbsp; BGR: <strong>5 &times; 5</strong> common-centroid array</div>
           <div class="proj-links"><a href="analog-ic.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Analog-IC-Design-and-Layout-">GitHub &rarr;</a></div>
-        </div>
-      </article>
-      <article class="proj-card" data-cats="analog-design analog-layout">
-        <div class="proj-thumb"><img class="shot" src="ldo_layout.png" alt="Low-Dropout Regulator &mdash; Analog Design &amp; Layout"></div>
-        <div class="proj-body">
-          <span class="badge">Analog design</span>
-          <h3>Low-Dropout Regulator &mdash; Analog Design &amp; Layout</h3>
-          <p class="proj-desc">PMOS-pass-device LDO designed for regulation and loop stability, characterised through DC, transient, PSRR, and stability analysis.</p>
-          <p class="proj-tools">Cadence Virtuoso &middot; Spectre &middot; GPDK45</p>
-          <div class="proj-metric"><strong>1.192 V</strong> out &middot; <strong>149.8 mV</strong> dropout &middot; <strong>90.46&deg;</strong> phase margin</div>
-          <div class="proj-links"><a href="ldo.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Analog-IC-Design-and-Layout-">GitHub &rarr;</a></div>
-        </div>
-      </article>
-      <article class="proj-card" data-cats="analog-design analog-layout">
-        <div class="proj-thumb"><img class="shot" src="bandgap_common_centroid_layout.png" alt="Bandgap Reference &mdash; Analog Design &amp; Full-Custom Layout"></div>
-        <div class="proj-body">
-          <span class="badge">Analog layout</span>
-          <h3>Bandgap Reference &mdash; Analog Design &amp; Full-Custom Layout</h3>
-          <p class="proj-desc">Precision voltage reference built on PTAT/CTAT compensation, with matching-driven layout of a 5 &times; 5 common-centroid BJT array.</p>
-          <p class="proj-tools">Cadence Virtuoso &middot; GPDK45</p>
-          <div class="proj-metric"><strong>5 &times; 5</strong> common-centroid BJT array</div>
-          <div class="proj-links"><a href="bandgap.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Analog-IC-Design-and-Layout-">GitHub &rarr;</a></div>
         </div>
       </article>
       <article class="proj-card" data-cats="mixed-signal analog-design">
@@ -94,21 +72,10 @@
         <div class="proj-body">
           <span class="badge">Custom layout</span>
           <h3>Digital CMOS Standard-Cell Library &amp; Hierarchical Custom Layout</h3>
-          <p class="proj-desc">An 11-track cell library with consistent height and aligned rails, plus transmission-gate logic, flip-flops, counters, and SerDes blocks.</p>
+          <p class="proj-desc">An 11-track cell library with consistent height and aligned rails, plus transmission-gate logic, flip-flops, counters, SerDes structures, and a 6T SRAM bitcell and array.</p>
           <p class="proj-tools">Synopsys Custom Compiler &middot; IC Validator &middot; StarRC &middot; PrimeWave &middot; SAED 28/32 nm</p>
-          <div class="proj-metric"><strong>11-track</strong> library &middot; 8 cells &middot; DRC/LVS/PEX clean</div>
+          <div class="proj-metric"><strong>11-track</strong> library &middot; 8 cells &middot; 6T SRAM array &middot; DRC/LVS/PEX clean</div>
           <div class="proj-links"><a href="digital-custom.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Digital-Custom-IC">GitHub &rarr;</a></div>
-        </div>
-      </article>
-      <article class="proj-card" data-cats="custom-layout physical-verification">
-        <div class="proj-thumb"><img class="shot" src="sram_6t_array.png" alt="6T SRAM Bitcell &amp; Array &mdash; Custom Layout"></div>
-        <div class="proj-body">
-          <span class="badge">Custom layout</span>
-          <h3>6T SRAM Bitcell &amp; Array &mdash; Custom Layout</h3>
-          <p class="proj-desc">6T bitcell and array with shared supply rails, word-line distribution, and differential bit-lines, verified and extracted.</p>
-          <p class="proj-tools">Synopsys Custom Compiler &middot; IC Validator &middot; StarRC &middot; SAED 28/32 nm</p>
-          <div class="proj-metric">DRC/LVS/ERC clean &middot; PEX correlated</div>
-          <div class="proj-links"><a href="sram.html">View project &rarr;</a> <a href="https://github.com/NamrataVLSI/Digital-Custom-IC">GitHub &rarr;</a></div>
         </div>
       </article>
       <article class="proj-card" data-cats="physical-design">

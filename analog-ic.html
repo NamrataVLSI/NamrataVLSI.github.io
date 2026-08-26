@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Analog IC Design &amp; Full-Custom Layout | Namrata Yadav</title>
-<meta name="description" content="Analog CMOS building blocks from circuit architecture and schematic design through DRC/LVS/ERC-clean layout">
+<meta name="description" content="Ten analog CMOS building blocks from circuit architecture and schematic design through DRC/LVS/ERC-clean layout, including a characterised LDO and a matching-driven bandgap reference">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
   <div class="wrap detail-head">
     <span class="badge">Analog design</span>
     <h1>Analog IC Design &amp; Full-Custom Layout</h1>
-    <p class="detail-sub">Analog CMOS building blocks from circuit architecture and schematic design through DRC/LVS/ERC-clean layout</p>
+    <p class="detail-sub">Ten analog CMOS building blocks from circuit architecture and schematic design through DRC/LVS/ERC-clean layout, including a characterised LDO and a matching-driven bandgap reference</p>
     <p class="detail-tools">Cadence Virtuoso &middot; Spectre &middot; PVS &middot; GPDK45</p>
   </div>
   <div class="wrap detail-body">
@@ -139,6 +139,43 @@
   </div>
   <p style="margin-top:14px;">This is why pre-layout and post-layout results differ, and why PEX is the point at
   which a layout is actually judged rather than the point at which it is finished.</p>
+</div>
+
+
+<div class="block" id="ldo">
+  <h2>Featured sub-project &mdash; Low-Dropout Regulator</h2>
+  <p>The most fully characterised block in this set: a 1.8 V to 1.2 V CMOS LDO built around an error amplifier
+  driving a PMOS pass device inside a resistive feedback loop.</p>
+  <div class="metrics"><div class="metric"><div class="k">Input</div><div class="v">1.8 V</div></div><div class="metric"><div class="k">Regulated output</div><div class="v">1.192 V</div></div><div class="metric"><div class="k">Dropout</div><div class="v">149.8 mV</div></div><div class="metric"><div class="k">Phase margin</div><div class="v">90.46&deg;</div></div></div>
+  <p style="margin-top:14px;">Load current approximately 1 mA. Line regulation, load regulation, output noise, and
+  load-step transient response are not claimed &mdash; those results are not part of the documented result set.</p>
+  <h3>Analog design focus</h3>
+  <ul><li><strong>Pass-device behaviour</strong> &mdash; the PMOS is sized for the dropout target at the intended load current, and that same size sets the dominant pole at the output, so sizing and stability are one decision.</li><li><strong>Error amplifier</strong> &mdash; sets loop gain and therefore regulation accuracy, while its output impedance interacts with the pass-device gate capacitance.</li><li><strong>Feedback network</strong> &mdash; the resistive divider fixes the output against the reference and contributes to loop dynamics.</li><li><strong>Biasing</strong> &mdash; bias current sets amplifier transconductance, and therefore both loop gain and quiescent current.</li><li><strong>Dropout behaviour</strong> &mdash; how far the input can fall before the pass device leaves its regulating region.</li><li><strong>Loop stability and compensation</strong> &mdash; the 90.46&deg; phase margin reflects a deliberately conservative, well-damped loop.</li><li><strong>PSRR</strong> &mdash; supply-ripple rejection across frequency, and how it degrades as loop gain rolls off.</li><li><strong>Layout parasitics</strong> &mdash; resistance in the pass-device and output routing appears directly as regulation error, so those paths were widened and given via arrays.</li></ul>
+  <h3>Verification</h3>
+  <p>DC, transient, PSRR, and loop-stability analysis; layout closed to DRC, LVS, and ERC, with matched symmetric
+  placement for the error-amplifier input pair and guard rings around the sensitive analog devices.</p>
+  <div class="fig-grid">
+    <figure class="figure"><div class="frame"><img class="shot" src="ldo_schematic.png" alt="LDO schematic: error amplifier, PMOS pass device, and feedback divider"></div><figcaption>LDO schematic: error amplifier, PMOS pass device, and feedback divider</figcaption></figure>
+    <figure class="figure"><div class="frame"><img class="shot" src="ldo_layout.png" alt="Full hierarchical LDO layout"></div><figcaption>Full hierarchical LDO layout</figcaption></figure>
+    <figure class="figure"><div class="frame"><img class="shot" src="ldo_psrr_plot.png" alt="PSRR versus frequency"></div><figcaption>PSRR versus frequency</figcaption></figure>
+    <figure class="figure"><div class="frame"><img class="shot" src="ldo_loop_stability.png" alt="Loop gain and phase, showing 90.46&deg; phase margin"></div><figcaption>Loop gain and phase, showing 90.46&deg; phase margin</figcaption></figure>
+  </div>
+</div>
+
+<div class="block" id="bandgap">
+  <h2>Featured sub-project &mdash; Bandgap Reference</h2>
+  <p>A PTAT/CTAT compensated voltage reference whose accuracy is set almost entirely by how well its devices match,
+  which makes it the most layout-driven block in the set.</p>
+  <div class="note">Temperature-coefficient and absolute output-voltage figures are not claimed &mdash; those
+  results are not part of the documented result set for this block.</div>
+  <h3>Circuit design</h3>
+  <ul><li><strong>Reference generation</strong> &mdash; a PTAT term from the base-emitter voltage difference between unequally sized BJT branches is summed with the CTAT base-emitter voltage itself, so the opposing temperature slopes partially cancel.</li><li><strong>Biasing</strong> &mdash; branch currents set so both BJT branches sit at the intended current-density ratio, since that ratio is what produces the PTAT term.</li><li><strong>Temperature compensation</strong> &mdash; the weighting between PTAT and CTAT contributions determines where the curvature minimum sits.</li><li><strong>Simulation</strong> &mdash; DC operating-point and temperature-sweep analysis to confirm the compensation behaves as intended.</li></ul>
+  <h3>Layout design</h3>
+  <ul><li><strong>5 &times; 5 common-centroid BJT array</strong> &mdash; the unequal-area devices distributed symmetrically about a shared centroid so linear process and thermal gradients cancel to first order.</li><li><strong>Resistor matching</strong> &mdash; identical unit resistors in the same orientation, since the reference depends on a resistor ratio rather than an absolute value.</li><li><strong>Symmetric routing</strong> so both branches see matched interconnect parasitics.</li><li><strong>Dummy devices</strong> at array edges to equalise the local etch and stress environment.</li><li><strong>Guard rings</strong> around the array for substrate-noise isolation and latch-up prevention.</li><li><strong>Parasitic-aware routing</strong> on the high-impedance summing nodes.</li></ul>
+  <div class="fig-grid">
+    <figure class="figure"><div class="frame"><img class="shot" src="bandgap_schematic.png" alt="Bandgap reference schematic"></div><figcaption>Bandgap reference schematic</figcaption></figure>
+    <figure class="figure"><div class="frame"><img class="shot" src="bandgap_common_centroid_layout.png" alt="5 &times; 5 common-centroid BJT array layout"></div><figcaption>5 &times; 5 common-centroid BJT array layout</figcaption></figure>
+  </div>
 </div>
 
 <div class="block">

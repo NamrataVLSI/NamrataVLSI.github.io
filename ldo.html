@@ -2,95 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Low-Dropout Regulator &mdash; Analog Design &amp; Layout | Namrata Yadav</title>
-<meta name="description" content="1.8 V to 1.2 V CMOS LDO with PMOS pass device, closed-loop feedback, and verified loop stability">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<meta http-equiv="refresh" content="0; url=analog-ic.html#ldo">
+<link rel="canonical" href="analog-ic.html">
+<title>Redirecting | Namrata Yadav</title>
 </head>
-<body>
-<header class="nav">
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Namrata Yadav</a>
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="experience.html">Experience</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
-<main>
-  <div class="wrap crumb"><a href="projects.html">&larr; All projects</a></div>
-  <div class="wrap detail-head">
-    <span class="badge">Analog design</span>
-    <h1>Low-Dropout Regulator &mdash; Analog Design &amp; Layout</h1>
-    <p class="detail-sub">1.8 V to 1.2 V CMOS LDO with PMOS pass device, closed-loop feedback, and verified loop stability</p>
-    <p class="detail-tools">Cadence Virtuoso &middot; Spectre &middot; GPDK45</p>
-  </div>
-  <div class="wrap detail-body">
-
-<div class="block">
-  <h2>Role in the project</h2>
-  <p>Sole author: architecture selection, transistor-level design, device sizing and biasing, DC / transient / PSRR /
-  loop-stability simulation, full-custom layout, and physical verification.</p>
-</div>
-
-<div class="block">
-  <h2>Results</h2>
-  <div class="metrics"><div class="metric"><div class="k">Input</div><div class="v">1.8 V</div></div><div class="metric"><div class="k">Regulated output</div><div class="v">1.192 V</div></div><div class="metric"><div class="k">Dropout</div><div class="v">149.8 mV</div></div><div class="metric"><div class="k">Phase margin</div><div class="v">90.46&deg;</div></div></div>
-  <p style="margin-top:14px;">Load current approximately 1 mA. These are the verified simulation results; line
-  regulation, load regulation, output noise, and load-step transient response are not claimed here because they are
-  not part of the documented result set.</p>
-</div>
-
-<div class="block">
-  <h2>Analog design focus</h2>
-  <ul><li><strong>Regulator architecture</strong> &mdash; error amplifier driving a PMOS pass device inside a resistive feedback loop, chosen for low dropout at the target headroom.</li><li><strong>Pass-device behaviour</strong> &mdash; the PMOS is sized for the dropout target at the intended load current; its size also sets the dominant pole location at the output, which is why sizing and stability are the same decision.</li><li><strong>Error amplifier</strong> &mdash; sets loop gain and therefore regulation accuracy, while its output impedance interacts with the pass-device gate capacitance.</li><li><strong>Feedback network</strong> &mdash; the resistive divider fixes the output voltage against the reference and contributes to loop dynamics.</li><li><strong>Biasing</strong> &mdash; bias current sets amplifier transconductance and therefore both loop gain and quiescent current.</li><li><strong>Dropout behaviour</strong> &mdash; how far the input can fall before the pass device leaves its regulating region.</li><li><strong>Loop stability and compensation</strong> &mdash; the 90.46&deg; phase margin reflects a deliberately conservative, well-damped loop.</li><li><strong>PSRR</strong> &mdash; supply-ripple rejection across frequency, and how it degrades as loop gain rolls off.</li><li><strong>Layout parasitics</strong> &mdash; resistance in the pass-device and output routing appears directly as regulation error, so those paths were widened.</li></ul>
-</div>
-
-<div class="block">
-  <h2>Design flow</h2>
-  <div class="flow-vert"><span class="flow-step">Specification</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Architecture</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Schematic</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Sizing &amp; biasing</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Pre-layout sim</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Layout</span><span class="flow-arrow">&rarr;</span><span class="flow-step">DRC / LVS / ERC</span><span class="flow-arrow">&rarr;</span><span class="flow-step">PEX</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Post-layout</span></div>
-</div>
-
-<div class="block">
-  <h2>Circuit and simulation</h2>
-  <div class="fig-grid">
-    <figure class="figure"><div class="frame"><img class="shot" src="ldo_schematic.png" alt="LDO schematic: error amplifier, PMOS pass device, and feedback divider"></div><figcaption>LDO schematic: error amplifier, PMOS pass device, and feedback divider</figcaption></figure>
-    <figure class="figure"><div class="frame"><img class="shot" src="ldo_transient.png" alt="Transient response of the regulated output"></div><figcaption>Transient response of the regulated output</figcaption></figure>
-    <figure class="figure"><div class="frame"><img class="shot" src="ldo_psrr_plot.png" alt="PSRR versus frequency"></div><figcaption>PSRR versus frequency</figcaption></figure>
-    <figure class="figure"><div class="frame"><img class="shot" src="ldo_loop_stability.png" alt="Loop gain and phase, showing 90.46&deg; phase margin"></div><figcaption>Loop gain and phase, showing 90.46&deg; phase margin</figcaption></figure>
-  </div>
-</div>
-
-<div class="block">
-  <h2>Layout and verification</h2>
-  <figure class="figure"><div class="frame"><img class="shot" src="ldo_layout.png" alt="Full hierarchical LDO layout"></div><figcaption>Full hierarchical LDO layout</figcaption></figure>
-  <ul><li>Wide, low-resistance routing on the pass-device and output nets.</li><li>Matched, symmetric placement for the error-amplifier input pair.</li><li>Guard rings around sensitive analog devices.</li><li>DRC, LVS, and ERC clean; PEX and pre-/post-layout comparison run where extraction was available.</li></ul>
-</div>
-
-<div class="block">
-  <h2>Key learnings</h2>
-  <ul><li>Pass-device sizing is a stability decision as much as a dropout decision.</li><li>A very high phase margin buys robustness but costs loop bandwidth and transient recovery speed.</li><li>Output-path routing resistance shows up as regulation error that no amount of loop gain hides.</li></ul>
-</div>
-
-<div class="block"><h2>Repository</h2><a class="btn" href="https://github.com/NamrataVLSI/Analog-IC-Design-and-Layout-">View on GitHub</a></div>
-  </div>
-</main>
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <p>&copy; 2026 Namrata Yadav &middot; M.S. Computer Engineering, San Diego State University</p>
-    <div style="display:flex;gap:18px;">
-      <a href="mailto:namratayadav.cal@gmail.com">namratayadav.cal@gmail.com</a>
-      <a href="https://github.com/NamrataVLSI">GitHub</a>
-      <a href="https://www.linkedin.com/in/namrata-yadav">LinkedIn</a>
-    </div>
-  </div>
-</footer>
-<script src="main.js"></script>
+<body style="font-family:Inter,sans-serif;padding:40px;">
+<p>This project is now part of a larger page. <a href="analog-ic.html#ldo">Continue &rarr;</a></p>
 </body>
 </html>

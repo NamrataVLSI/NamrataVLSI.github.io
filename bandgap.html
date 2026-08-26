@@ -2,81 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bandgap Reference &mdash; Analog Design &amp; Full-Custom Layout | Namrata Yadav</title>
-<meta name="description" content="PTAT and CTAT compensated voltage reference with a 5 &times; 5 common-centroid BJT array">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<meta http-equiv="refresh" content="0; url=analog-ic.html#bandgap">
+<link rel="canonical" href="analog-ic.html">
+<title>Redirecting | Namrata Yadav</title>
 </head>
-<body>
-<header class="nav">
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Namrata Yadav</a>
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="experience.html">Experience</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
-<main>
-  <div class="wrap crumb"><a href="projects.html">&larr; All projects</a></div>
-  <div class="wrap detail-head">
-    <span class="badge">Analog layout</span>
-    <h1>Bandgap Reference &mdash; Analog Design &amp; Full-Custom Layout</h1>
-    <p class="detail-sub">PTAT and CTAT compensated voltage reference with a 5 &times; 5 common-centroid BJT array</p>
-    <p class="detail-tools">Cadence Virtuoso &middot; GPDK45</p>
-  </div>
-  <div class="wrap detail-body">
-
-<div class="block">
-  <h2>Role in the project</h2>
-  <p>Sole author: reference architecture, transistor and device-level schematic design, pre-layout simulation,
-  full-custom matching-driven layout, and DRC/LVS/ERC verification.</p>
-  <div class="note">Temperature-coefficient and absolute output-voltage figures are not claimed on this page &mdash;
-  those results are not part of the documented result set for this block.</div>
-</div>
-
-<div class="block">
-  <h2>Circuit design</h2>
-  <ul><li><strong>Reference generation concept</strong> &mdash; a PTAT term derived from the difference in base-emitter voltage between unequally sized BJT branches is summed with the CTAT base-emitter voltage itself, so the two opposing temperature slopes partially cancel.</li><li><strong>Biasing</strong> &mdash; branch currents are set so that both BJT branches operate at the intended current-density ratio, since that ratio is what produces the PTAT term.</li><li><strong>Device matching</strong> &mdash; the reference's accuracy is bounded by how well the BJT array and the resistors match, not by the amplifier.</li><li><strong>Temperature compensation</strong> &mdash; the weighting between PTAT and CTAT contributions determines where the curvature minimum sits.</li><li><strong>Simulation</strong> &mdash; DC operating-point and temperature-sweep analysis to confirm the compensation behaves as intended.</li></ul>
-  <figure class="figure"><div class="frame"><img class="shot" src="bandgap_schematic.png" alt="Bandgap reference schematic"></div><figcaption>Bandgap reference schematic</figcaption></figure>
-</div>
-
-<div class="block">
-  <h2>Layout design</h2>
-  <ul><li><strong>5 &times; 5 common-centroid BJT array</strong> &mdash; the unequal-area devices are distributed symmetrically about a shared centroid so linear process and thermal gradients cancel to first order.</li><li><strong>Resistor matching</strong> &mdash; identical unit resistors in the same orientation, since the reference depends on a resistor <em>ratio</em> rather than an absolute value.</li><li><strong>Symmetry</strong> &mdash; both branches routed identically so interconnect parasitics match.</li><li><strong>Dummy devices</strong> at array edges to equalise the local etch and stress environment.</li><li><strong>Guard rings</strong> around the array for substrate-noise isolation and latch-up prevention.</li><li><strong>Parasitic-aware routing</strong> on the high-impedance summing nodes.</li></ul>
-  <figure class="figure"><div class="frame"><img class="shot" src="bandgap_common_centroid_layout.png" alt="5 &times; 5 common-centroid BJT array layout"></div><figcaption>5 &times; 5 common-centroid BJT array layout</figcaption></figure>
-</div>
-
-<div class="block">
-  <h2>Verification</h2>
-  <p>DRC, LVS, and ERC clean in Cadence PVS, with iterative debug of spacing, enclosure, and connectivity violations
-  introduced by the dense array routing.</p>
-</div>
-
-<div class="block">
-  <h2>Key learnings</h2>
-  <ul><li>In a bandgap the layout is the design; a schematically perfect reference matches only as well as its array does.</li><li>Common-centroid arrangement only cancels gradients if the routing is symmetric too.</li><li>Ratio-based design is far more robust than absolute-value design in a CMOS process.</li></ul>
-</div>
-
-<div class="block"><h2>Repository</h2><a class="btn" href="https://github.com/NamrataVLSI/Analog-IC-Design-and-Layout-">View on GitHub</a></div>
-  </div>
-</main>
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <p>&copy; 2026 Namrata Yadav &middot; M.S. Computer Engineering, San Diego State University</p>
-    <div style="display:flex;gap:18px;">
-      <a href="mailto:namratayadav.cal@gmail.com">namratayadav.cal@gmail.com</a>
-      <a href="https://github.com/NamrataVLSI">GitHub</a>
-      <a href="https://www.linkedin.com/in/namrata-yadav">LinkedIn</a>
-    </div>
-  </div>
-</footer>
-<script src="main.js"></script>
+<body style="font-family:Inter,sans-serif;padding:40px;">
+<p>This project is now part of a larger page. <a href="analog-ic.html#bandgap">Continue &rarr;</a></p>
 </body>
 </html>

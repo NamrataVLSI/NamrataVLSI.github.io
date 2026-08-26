@@ -21,21 +21,21 @@ Crop out tool licence banners, usernames, and file paths before uploading.
 | Analog IC | OTA layout (home page card) | `analog_ota_layout.png` |
 | Analog IC | Two-stage op-amp schematic | `analog_opamp_schematic.png` |
 | Analog IC | DRC/LVS clean summary | `analog_drc_lvs_clean.png` |
-| LDO | Full hierarchical layout (home page card) | `ldo_layout.png` |
-| LDO | Schematic | `ldo_schematic.png` |
-| LDO | Transient response | `ldo_transient.png` |
-| LDO | PSRR vs. frequency | `ldo_psrr_plot.png` |
-| LDO | Loop gain / phase | `ldo_loop_stability.png` |
-| Bandgap | 5 × 5 common-centroid BJT array | `bandgap_common_centroid_layout.png` |
-| Bandgap | Schematic | `bandgap_schematic.png` |
+| Analog IC → LDO | Full hierarchical layout (home page card) | `ldo_layout.png` |
+| Analog IC → LDO | Schematic | `ldo_schematic.png` |
+| Analog IC → LDO | Transient response | `ldo_transient.png` |
+| Analog IC → LDO | PSRR vs. frequency | `ldo_psrr_plot.png` |
+| Analog IC → LDO | Loop gain / phase | `ldo_loop_stability.png` |
+| Analog IC → Bandgap | 5 × 5 common-centroid BJT array | `bandgap_common_centroid_layout.png` |
+| Analog IC → Bandgap | Schematic | `bandgap_schematic.png` |
 | Mixed-signal | Top-level PLL schematic | `pll_top_level.png` |
 | Mixed-signal | PLL layout | `pll_layout.png` |
 | Mixed-signal | Serializer / deserializer schematic or layout | `serdes_block.png` |
 | Digital custom | Standard-cell library layout | `standard_cell_library.png` |
 | Digital custom | Hierarchical block layout | `digital_hierarchical_layout.png` |
 | Digital custom | Pre-/post-layout comparison | `digital_pex_postlayout.png` |
-| SRAM | 6T array layout | `sram_6t_array.png` |
-| SRAM | 6T bitcell schematic | `sram_6t_schematic.png` |
+| Digital custom → SRAM | 6T array layout | `sram_6t_array.png` |
+| Digital custom → SRAM | 6T bitcell schematic | `sram_6t_schematic.png` |
 | ALU | ICC2 floorplan | `alu_floorplan.png` |
 | ALU | Post-route layout | `alu_routed.png` |
 | ALU | PrimeTime timing report | `alu_timing_report.png` |
@@ -50,9 +50,11 @@ Crop out tool licence banners, usernames, and file paths before uploading.
 ## Pages
 
 `index.html` home · `experience.html` · `projects.html` · `contact.html`, plus one page per
-project: `lif-neuron.html`, `analog-ic.html`, `ldo.html`, `bandgap.html`, `mixed-signal.html`,
-`digital-custom.html`, `sram.html`, `physical-design-alu.html`, `temperature-sensor.html`,
-`neural-network-video-processing.html`.
+project: `lif-neuron.html`, `analog-ic.html`, `mixed-signal.html`, `digital-custom.html`,
+`physical-design-alu.html`, `temperature-sensor.html`, `neural-network-video-processing.html`.
+
+`ldo.html`, `bandgap.html`, and `sram.html` are redirect stubs — that work now lives inside
+`analog-ic.html` and `digital-custom.html`, and the stubs keep any old link working.
 
 ## Editing
 
