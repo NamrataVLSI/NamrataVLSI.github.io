@@ -121,13 +121,20 @@ p  { margin: 0 0 1rem; }
   color: var(--ink-muted); font-size: 0.7rem; text-align: center; padding: 8px; gap: 4px;
 }
 .photo-ph strong { font-size: 1.05rem; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.04em; }
-.hero h1 { margin-bottom: 10px; }
+.hero h1 { margin-bottom: 12px; }
 .hero-role {
   font-size: 0.92rem; color: var(--ink-soft); font-weight: 500;
-  margin-bottom: 16px; line-height: 1.6;
+  line-height: 1.7; max-width: 780px;
+  margin: 0 0 20px; padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
 }
-.hero-role span { color: var(--border-strong); margin: 0 6px; }
-.hero p.lede { color: var(--ink-soft); max-width: 720px; font-size: 1rem; }
+.hero-role span { color: var(--accent); margin: 0 8px; }
+.hero p.lede {
+  color: var(--ink-soft); max-width: 780px; font-size: 1rem;
+  margin: 0 0 14px;
+}
+.hero p.lede:last-of-type { margin-bottom: 0; }
+.hero p.lede strong { color: var(--ink); font-weight: 600; }
 .hero-meta { font-size: 0.88rem; color: var(--ink-muted); margin-bottom: 18px; }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
