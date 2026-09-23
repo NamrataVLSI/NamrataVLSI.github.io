@@ -37,10 +37,7 @@ Crop out tool licence banners, usernames, and file paths before uploading.
 | Digital custom → SRAM | 6T array layout | `sram_6t_array.png` |
 | Digital custom → SRAM | 6T bitcell schematic | `sram_6t_schematic.png` |
 | ALU | ICC2 floorplan | `alu_floorplan.png` |
-| SKY130 | Netgen comp.out mismatch report (card image) | `sky130_lvs_debug.png` |
-| SKY130 | CMOS inverter layout in Magic | `sky130_inverter_layout.png` |
-| SKY130 | DRC marker and rule query in Magic | `sky130_drc_debug.png` |
-| SKY130 | OpenLane implementation result | `sky130_openlane_flow.png` |
+| SKY130 | Flow overview with module examples | `sky130_flow.png` |
 | ALU | Post-route layout | `alu_routed.png` |
 | ALU | PrimeTime timing report | `alu_timing_report.png` |
 | Temperature sensor | Temperature sweep graph | `temperature_sensor_sweep.png` |
