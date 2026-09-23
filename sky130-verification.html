@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKY130 Physical Design &amp; Verification | Namrata Yadav</title>
+<meta name="description" content="Open-source PDK flow from device-level layout through DRC, extraction, RTL-to-GDSII, and hierarchical LVS debugging">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Namrata Yadav</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="experience.html">Experience</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrap crumb"><a href="projects.html">&larr; All projects</a></div>
+  <div class="wrap detail-head">
+    <h1>SKY130 Physical Design &amp; Verification</h1>
+    <p class="detail-sub">Open-source PDK flow from device-level layout through DRC, extraction, RTL-to-GDSII, and hierarchical LVS debugging</p>
+    <p class="detail-tools">SkyWater SKY130 &middot; Magic &middot; Xschem &middot; Ngspice &middot; Netgen &middot; OpenLane &middot; KLayout &middot; OpenSTA</p>
+  </div>
+  <div class="wrap detail-body">
+
+<div class="block">
+  <h2>Role in the project</h2>
+  <p>Structured workshop built around guided labs. The labs supply the designs and deliberately inject faults; the
+  engineering work is diagnostic &mdash; reading what each verification tool reports, locating the responsible
+  geometry, device, net or property, correcting it, and confirming the error clears.</p>
+  <div class="note">Workshop and lab-based learning, not original circuit design, and not a tapeout. Nothing from
+  this work was fabricated. What it demonstrates is verification-tool fluency and a repeatable debugging method.</div>
+</div>
+
+<div class="block">
+  <h2>Objective</h2>
+  <p>Learn the open-source SKY130 flow end to end, and specifically to stop treating verification as a pass/fail
+  gate. The useful engineering work begins when the result is FAIL &mdash; a DRC marker points back to a physical
+  rule, and an LVS mismatch points back to connectivity, hierarchy, pins, devices or properties.</p>
+</div>
+
+<div class="block">
+  <h2>Learning path</h2>
+  <div class="flow-vert"><span class="flow-step">SKY130 &amp; device layout</span><span class="flow-arrow">&rarr;</span><span class="flow-step">GDS / extraction / PV</span><span class="flow-arrow">&rarr;</span><span class="flow-step">DRC rule debugging</span><span class="flow-arrow">&rarr;</span><span class="flow-step">RTL-to-GDSII (OpenLane)</span><span class="flow-arrow">&rarr;</span><span class="flow-step">LVS &amp; debugging</span></div>
+</div>
+
+<div class="block">
+  <h2>Module 1 &mdash; SKY130 introduction and device-level flow</h2>
+  <ul><li>CMOS inverter schematic in Xschem, reusable symbols, and testbench construction.</li><li>SPICE simulation in Ngspice, then importing the schematic-generated SPICE into Magic.</li><li>Creating and modifying SKY130 device layouts, extracting layout netlists, and running an initial LVS flow.</li><li>Established the schematic &rarr; simulation &rarr; layout &rarr; extraction &rarr; LVS chain that every later module depends on.</li></ul>
+  <figure class="figure"><div class="frame"><img class="shot" src="sky130_inverter_layout.png" alt="CMOS inverter layout in Magic"></div><figcaption>CMOS inverter layout in Magic</figcaption></figure>
+</div>
+
+<div class="block">
+  <h2>Module 2 &mdash; GDS, extraction, DRC, LVS and XOR</h2>
+  <p>Working inside the layout database rather than only drawing geometry: reading SKY130 GDS libraries into Magic,
+  GDS/CIF input styles, vendor layout handling, port names, indices and metadata, LEF annotation, SPICE-based port
+  ordering, abstract views, and read-only library cells.</p>
+  <ul><li><strong>Parasitic extraction</strong> of both capacitance and resistance, producing RC-aware SPICE.</li><li><strong>Batch, interactive and hierarchical DRC.</strong></li><li><strong>XOR layout comparison</strong> in Magic, isolating only the geometry that changed between two versions of a layout.</li><li><strong>Format awareness</strong> &mdash; GDS carries physical geometry, LEF carries abstract physical information and pin metadata, SPICE carries electrical connectivity and device information. Knowing which format preserves what became decisive when debugging hierarchical LVS later.</li></ul>
+</div>
+
+<div class="block">
+  <h2>Module 3 &mdash; DRC rule debugging</h2>
+  <p>Violations were introduced deliberately, so each one had to be understood rather than simply cleared: what rule
+  was violated, why the foundry requires it, and what geometry has to change.</p>
+  <ul><li>Minimum width, minimum spacing, wide-metal spacing, and notch rules.</li><li>Via sizing, multiple contact cuts, via enclosure and overlap, and automatically generated vias.</li><li>Minimum-area and minimum-hole rules.</li><li>N-well requirements, substrate taps, well contacts, and deep N-well structures.</li><li>Full versus fast DRC styles, and interactive DRC debugging.</li></ul>
+  <h3>Debug cycle</h3>
+  <div class="flow-vert"><span class="flow-step">Locate marker</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Query the rule</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Identify layer + requirement</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Measure geometry</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Modify layout</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Re-run DRC</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Confirm cleared</span></div>
+  <p>Working a 0.14 &micro;m spacing violation back to the specific rule and the specific edge is the same motion as
+  working a Netgen property error back to a PCell parameter &mdash; the tool reports a symptom, not a cause.</p>
+  <figure class="figure"><div class="frame"><img class="shot" src="sky130_drc_debug.png" alt="DRC marker and rule query in Magic"></div><figcaption>DRC marker and rule query in Magic</figcaption></figure>
+</div>
+
+<div class="block">
+  <h2>Module 4 &mdash; RTL-to-GDSII with OpenLane</h2>
+  <p>The complete digital implementation flow on open-source tools. It maps directly onto the commercial flow in my
+  ALU project, but exposes more of the machinery because nothing is hidden behind a GUI.</p>
+  <div class="flow-vert"><span class="flow-step">RTL</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Synthesis</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Pre-CTS STA</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Floorplan</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Placement</span><span class="flow-arrow">&rarr;</span><span class="flow-step">CTS</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Global route</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Detailed route</span><span class="flow-arrow">&rarr;</span><span class="flow-step">RC extraction</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Post-layout timing</span><span class="flow-arrow">&rarr;</span><span class="flow-step">PV</span><span class="flow-arrow">&rarr;</span><span class="flow-step">GDSII</span></div>
+  <ul><li><strong>Synthesis and technology mapping</strong> &mdash; Yosys for RTL synthesis, ABC for mapping and logic optimization against the target standard-cell library.</li><li><strong>Pre-CTS timing</strong> in OpenSTA against an ideal clock, since no physical clock network exists yet.</li><li><strong>Floorplanning</strong> &mdash; core area, placement rows, routing tracks, I/O placement, well-tap and decap insertion, and power distribution network generation.</li><li><strong>Placement</strong> &mdash; global placement, optimization, then detailed placement and legalization.</li><li><strong>Clock tree synthesis</strong> with TritonCTS &mdash; buffer insertion and balancing against clock skew, latency and propagation, replacing the ideal clock with a real network.</li><li><strong>Global routing</strong> with FastRoute, also used to find congestion before exact routing.</li><li><strong>Antenna handling</strong> &mdash; diode insertion to limit plasma-induced gate-oxide charging during fabrication.</li><li><strong>Detailed routing</strong> with TritonRoute, converting the global solution into exact wires and vias under design rules.</li><li><strong>Post-route RC extraction</strong> in Magic, feeding realistic post-layout timing.</li><li><strong>Signoff</strong> across Magic (DRC and antenna), KLayout (additional DRC), Netgen (LVS) and CVC (circuit validity), then GDSII stream-out.</li><li><strong>config.tcl</strong> as the single control point for synthesis, floorplan, placement, CTS, routing, timing and verification parameters.</li></ul>
+  <figure class="figure"><div class="frame"><img class="shot" src="sky130_openlane_flow.png" alt="OpenLane implementation result"></div><figcaption>OpenLane implementation result</figcaption></figure>
+</div>
+
+<div class="block">
+  <h2>Module 5 &mdash; LVS and debugging</h2>
+  <p>The core question of physical verification: the layout may be DRC-clean, but does it implement the circuit we
+  intended to build? The labs progressed from trivial SPICE comparisons to hierarchical analog and digital designs.</p>
+  <div class="flow-vert"><span class="flow-step">Simple SPICE</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Subcircuits</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Blackboxes</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Primitive devices</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Analog hierarchy</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Layout vs. Verilog</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Macros</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Large mismatches</span><span class="flow-arrow">&rarr;</span><span class="flow-step">Property checking</span></div>
+  <ul><li><strong>Connectivity experiments</strong> &mdash; changing individual connections deliberately and reading how each one surfaces in comp.out.</li><li><strong>Topology matching versus top-level pin matching</strong> as related but separate checks.</li><li><strong>Blackboxes</strong> &mdash; pin matching, missing pins, proxy pins, dummy nets, automatic flattening, and why the interface matters most when the internal implementation is unavailable.</li><li><strong>Terminal symmetry</strong> on resistors, capacitors and diodes, using Netgen's permute configuration to declare which pin permutations are electrically legal.</li><li><strong>A real analog block</strong> &mdash; a power-on-reset circuit compared between the Xschem schematic netlist and the Magic extracted netlist, exposing hierarchy, PDK devices, standard-cell definitions, parameterized cells, top-level ports, metal resistors and analog device properties.</li><li><strong>Layout versus Verilog</strong> for digital blocks &mdash; comparing Magic-extracted SPICE against gate-level structural Verilog, and why behavioural Verilog cannot serve that purpose.</li><li><strong>Realistic injected failures</strong> &mdash; missing and additional devices, fill and tap-cell mismatches, antenna diode insertion, broken power networks, missing vias, merged top-level ports, ground and substrate connectivity, and hierarchical macro issues.</li></ul>
+
+  <h3>Property checking &mdash; the lesson that stuck</h3>
+  <p>Topology matching does not mean LVS has passed. Two netlists can agree on devices, nets, connectivity and pins
+  and still fail because device properties differ. I debugged mismatches in MIM capacitor dimensions, resistor
+  dimensions, MOSFET width and finger count. In one case an NFET PCell drawn as 2 &micro;m per finger with two
+  fingers extracted as an effective 4 &micro;m width, while the schematic expected 2 &micro;m &mdash; the Netgen
+  property error traced back to the PCell parameters, not to anything wrong with the connectivity.</p>
+  <figure class="figure"><div class="frame"><img class="shot" src="sky130_lvs_debug.png" alt="Netgen comp.out mismatch report"></div><figcaption>Netgen comp.out mismatch report</figcaption></figure>
+
+  <h3>Divide and conquer</h3>
+  <p>Rather than interpreting hundreds of errors at once: run LVS, fix the obvious structural problems, re-run, see
+  which errors disappear together, then investigate the remaining nets and pins. Errors cluster, and clearing one
+  structural fault often removes dozens of downstream symptoms.</p>
+</div>
+
+<div class="block">
+  <h2>What each check actually answers</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Check</th><th>Question it answers</th></tr></thead>
+    <tbody>
+      <tr><td><strong>DRC</strong></td><td>Can this geometry be manufactured under the process rules?</td></tr>
+      <tr><td><strong>Extraction</strong></td><td>What electrical circuit does this geometry represent?</td></tr>
+      <tr><td><strong>LVS</strong></td><td>Does the extracted circuit match the intended schematic or netlist?</td></tr>
+      <tr><td><strong>XOR</strong></td><td>Are two physical layout versions geometrically identical?</td></tr>
+      <tr><td><strong>STA</strong></td><td>Does the implemented design satisfy timing requirements?</td></tr>
+      <tr><td><strong>CVC</strong></td><td>Is the final circuit electrically valid?</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="block">
+  <h2>What I took away</h2>
+  <ul><li><strong>Verification reports are debugging information, not pass/fail results.</strong> A DRC marker points back to a physical rule; an LVS mismatch points back to connectivity, hierarchy, pins, devices or properties.</li><li><strong>The tool reports the symptom, not the cause.</strong> Moving from a Netgen property error to a finger count in a Magic PCell is the actual skill being practised.</li><li><strong>File formats are not interchangeable.</strong> Which information survives GDS, LEF or SPICE decides what a hierarchical LVS run can even see.</li><li><strong>Open-source and commercial flows ask the same questions.</strong> Working through Magic, Netgen and OpenLane made the Cadence and Synopsys flows easier to reason about.</li></ul>
+</div>
+
+<div class="block"><h2>Repository</h2><a class="btn" href="https://github.com/NamrataVLSI/sky130-physical-verification-tapeout">View on GitHub</a></div>
+
+  </div>
+</main>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Namrata Yadav &middot; M.S. Computer Engineering, San Diego State University</p>
+    <div style="display:flex;gap:18px;">
+      <a href="mailto:namratayadav.cal@gmail.com">namratayadav.cal@gmail.com</a>
+      <a href="https://github.com/NamrataVLSI">GitHub</a>
+      <a href="https://www.linkedin.com/in/namrata-yadav-3645b9243">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
