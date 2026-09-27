@@ -36,18 +36,18 @@
       that are supposed to match now have surroundings, sensitive nodes have parasitics, and routing decisions start
       affecting circuit behavior. So before I place anything, I try to work out which nets and devices the circuit
       is actually sensitive to, and protect those first. In a neuron cell layout I did in Cadence with the NCSU
-      0.35&nbsp;&micro;m kit, that was the membrane node&mdash;it holds charge rather than just carrying a signal,
+      0.35&nbsp;&micro;m kit, that was the membrane node.It holds charge rather than just carrying a signal,
       so I kept it on lower metal and away from switching nets, because anything coupling into it would change the
       integration behavior the whole circuit is built around.</p>
       <p class="lede">I've worked that way across analog and mixed-signal blocks in GPDK45, standard cells and SRAM
-      in SAED 28/32&nbsp;nm, and most recently physical verification on SKY130&mdash;which is where I stopped
+      in SAED 28/32&nbsp;nm, and most recently physical verification on SKY130,which is where I stopped
       treating DRC and LVS as a pass/fail gate. One mismatch I debugged came down to a device drawn as two
       2&nbsp;&micro;m fingers, which extracts as 4&nbsp;&micro;m while the schematic still expected
       2&nbsp;&micro;m. Every connection matched, and it still failed. Reading a report like that and tracing it back
       to the real cause is the part I enjoy most. The same curiosity about what circuits do outside nominal
       conditions is what pulled me into PVT corners, Monte Carlo mismatch, and aging analysis.</p>
       <p class="lede">I'm looking for opportunities in custom IC layout and physical verification where I can stay
-      close to the circuit&mdash;not only implementing and verifying the layout, but understanding and debugging
+      close to the circuit not only implementing and verifying the layout, but understanding and debugging
       what the physical implementation does to its behavior.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="projects.html">View projects</a>
